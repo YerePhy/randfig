@@ -1,6 +1,6 @@
 import pytest
 import random
-from randfig import Formula
+from randfig.transforms import Formula
 
 
 def test_random(config):

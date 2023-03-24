@@ -1,5 +1,5 @@
 import pytest
-from randfig import Remove
+from randfig.transforms import Remove
 
 
 @pytest.mark.parametrize('cfg,expected,keys', [

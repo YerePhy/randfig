@@ -1,5 +1,5 @@
 import pytest
-from randfig import Insert
+from randfig.transforms import Insert
 
 
 @pytest.mark.parametrize('cfg,expected,keys,value', [

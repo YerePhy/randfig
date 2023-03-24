@@ -1,5 +1,5 @@
 import pytest
-from randfig import Compose, Formula, Nest
+from randfig.transforms import Compose, Formula, Nest
 
 
 def test_compose(config):

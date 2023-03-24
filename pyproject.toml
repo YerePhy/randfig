@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "randfig"
 version = "0.1.0"
-description = "A small framework to generate random configurations."
-authors = ["Jeremiah Poveda Martínez"]
+description = "A small framework for configuration generation."
+authors = ["YerePhy <jereasap@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 

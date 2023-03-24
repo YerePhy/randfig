@@ -1,5 +1,5 @@
 from typing import Sequence, Mapping, Any
-from .config_transform import ConfigTransform
+from randfig.transforms.config_transform import ConfigTransform
 from randfig.utils import insert_nested_key
 
 

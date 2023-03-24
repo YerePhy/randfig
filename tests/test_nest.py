@@ -1,5 +1,5 @@
 import pytest
-from randfig import Nest
+from randfig.transforms import Nest
 
 
 def test_nest(config):

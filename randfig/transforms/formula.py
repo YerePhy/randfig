@@ -1,5 +1,5 @@
 from typing import Callable, Mapping, Sequence, Any
-from .config_transform import ConfigTransform
+from randfig.transforms.config_transform import ConfigTransform
 
 
 __all__ = ["Formula"]

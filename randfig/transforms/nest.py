@@ -1,5 +1,5 @@
 from typing import Mapping, Sequence
-from .config_transform import ConfigTransform
+from randfig.transforms.config_transform import ConfigTransform
 
 
 __all__ = ["Nest"]

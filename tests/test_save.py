@@ -1,6 +1,6 @@
 import pytest
 import yaml
-from randfig import Save
+from randfig.transforms import Save
 
 
 @pytest.mark.parametrize("keys,expected_from_yaml",

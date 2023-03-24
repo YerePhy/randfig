@@ -1,7 +1,7 @@
 import ruamel.yaml as yaml
 from pathlib import Path
 from typing import Sequence, Mapping, List, Union, Optional
-from .config_transform import ConfigTransform
+from randfig.transforms.config_transform import ConfigTransform
 from randfig.utils import get_nested_value
 
 
