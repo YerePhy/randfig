@@ -1,0 +1,101 @@
+_target_: randfig.Compose
+transforms:
+  - _target_: randfig.Formula
+    keys: ["scanner_radius"]
+    formula:
+      _target_: randfig.decorators.accept_cfg
+      _args_:
+        - _target_: hydra.utils.get_method
+          path: random.uniform
+        - ${stats:scanner_radius_min}
+        - ${stats:scanner_radius_max}
+  - _target_: randfig.Formula
+    keys: ["scanner_radius"]
+    formula:
+      _target_: randfig.expressions.rounding
+      key: "scanner_radius"
+      decimals: 1
+      _partial_: true
+  - _target_: randfig.Formula
+    keys: ["axial_fov"]
+    formula:
+      _target_: randfig.decorators.accept_cfg
+      _args_:
+        - _target_: hydra.utils.get_method
+          path: random.uniform
+        - ${stats:axial_fov_min}
+        - ${stats:axial_fov_max}
+  - _target_: randfig.Formula
+    keys: ["axial_fov"]
+    formula:
+      _target_: randfig.expressions.rounding
+      key: "axial_fov"
+      decimals: 1
+      _partial_: true
+  - _target_: randfig.Formula
+    keys: ["simset_material"]
+    formula:
+      _target_: randfig.decorators.accept_cfg
+      _args_:
+        - _target_: hydra.utils.get_method
+          path: random.choices
+      population:
+        - ${stats:BGO}
+        - ${stats:LSO}
+        - ${stats:LYSO}
+        - ${stats:GSO}
+  - _target_: randfig.Formula
+    keys: ["simset_material"]
+    formula:
+      _target_: randfig.expressions.pop
+      key: "simset_material"
+      element: 0
+      _partial_: true
+  - _target_: randfig.Formula
+    keys: ["z_crystal_size"]
+    formula:
+      _target_: randfig.decorators.accept_cfg
+      _args_:
+        - _target_: hydra.utils.get_method
+          path: random.uniform
+        - ${stats:z_crystal_size_min}
+        - ${stats:z_crystal_size_max}
+  - _target_: randfig.Formula
+    keys: ["z_crystal_size"]
+    formula:
+      _target_: randfig.expressions.rounding
+      key: "z_crystal_size"
+      decimals: 1
+      _partial_: true
+  - _target_: randfig.Formula
+    keys: ["transaxial_crystal_size"]
+    formula:
+      _target_: randfig.decorators.accept_cfg
+      _args_:
+        - _target_: hydra.utils.get_method
+          path: random.uniform
+        - ${stats:transaxial_crystal_size_min}
+        - ${stats:transaxial_crystal_size_max}
+  - _target_: randfig.Formula
+    keys: ["transaxial_crystal_size"]
+    formula:
+      _target_: randfig.expressions.rounding
+      key: "transaxial_crystal_size"
+      decimals: 1
+      _partial_: true
+  - _target_: randfig.Formula
+    keys: ["crystal_thickness"]
+    formula:
+      _target_: randfig.decorators.accept_cfg
+      _args_:
+        - _target_: hydra.utils.get_method
+          path: random.uniform
+        - ${stats:crystal_thickness_min}
+        - ${stats:crystal_thickness_max}
+  - _target_: randfig.Formula
+    keys: ["crystal_thickness"]
+    formula:
+      _target_: randfig.expressions.rounding
+      key: "crystal_thickness"
+      decimals: 1
+      _partial_: true
