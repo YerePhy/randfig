@@ -1,4 +1,5 @@
 import pytest
+import math
 from decimal import Decimal
 import randfig.expressions as expressions
 
@@ -60,3 +61,55 @@ def test_rounding(cfg, key, expected, expected_decimals):
 def test_rounding_not_number(cfg, key):
     with pytest.raises(TypeError):
         expressions.rounding(cfg, key, 0)
+
+
+@pytest.mark.parametrize('fn,cfg,kwargs,expected',
+    [
+        [
+            expressions.min_threshold_from_resolution,
+            {"resolution": 10, "non_affected_key": None},
+            {"resolution_key": "resolution", "peak": 511, "sigmas": 2, "is_percentage": True},
+            467.60297
+        ],
+        [
+            expressions.min_threshold_from_resolution,
+            {"resolution": 0.1, "non_affected_key": None},
+            {"resolution_key": "resolution", "peak": 511, "sigmas": 2, "is_percentage": False},
+            467.60297
+        ],
+        [
+            expressions.max_threshold_from_resolution,
+            {"resolution": 10, "non_affected_key": None},
+            {"resolution_key": "resolution", "peak": 511, "sigmas": 2, "is_percentage": True},
+            554.39702
+        ],
+        [
+            expressions.max_threshold_from_resolution,
+            {"resolution": 0.1, "non_affected_key": None},
+            {"resolution_key": "resolution", "peak": 511, "sigmas": 2, "is_percentage": False},
+            554.39702
+        ]
+])
+def test_threshold_from_resolution(fn, cfg, kwargs, expected):
+    out = fn(cfg, **kwargs)
+    assert math.isclose(out, expected, abs_tol=0.00001)
+
+
+@pytest.mark.parametrize('fn,cfg,kwargs,expected',
+    [
+        [
+            expressions.min_threshold_from_resolution,
+            {"resolution": 10, "non_affected_key": None},
+            {"resolution_key": "resolution", "peak": 511, "sigmas": 2, "is_percentage": False},
+            467.60297
+        ],
+        [
+            expressions.max_threshold_from_resolution,
+            {"resolution": 10, "non_affected_key": None},
+            {"resolution_key": "resolution", "peak": 511, "sigmas": 2, "is_percentage": False},
+            554.39702
+        ]
+])
+def test_threshold_from_resolution_non_valid_resolution(fn, cfg, kwargs, expected):
+    with pytest.raises(ValueError):
+        fn(cfg, **kwargs)
