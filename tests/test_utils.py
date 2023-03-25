@@ -190,3 +190,25 @@ def test_remove_nested_key(cfg, expected, keys):
 def test_remove_nested_key(cfg, keys):
     with pytest.raises(TypeError):
         utils.remove_nested_key(cfg, keys)
+
+
+@pytest.mark.parametrize('value,p,reference,tries', [
+    [460, 0.01, 511, 10]
+])
+def test_add_uniform_jitter(value, p, reference, tries):
+    max_allowed = value + p * reference
+    min_allowed = value - p * reference
+
+    for _ in range(tries + 1):
+        out = utils.add_uniform_jitter(value, p, reference)
+        assert min_allowed <= out and out <= max_allowed
+
+
+@pytest.mark.parametrize('value,p,reference', [
+    ['', 0.1, 511],
+    [460, '', 511],
+    [460, 0.1, '']
+])
+def test_add_uniform_jitter_type_error(value, p, reference):
+    with pytest.raises(TypeError):
+        utils.add_uniform_jitter(value, p, reference)

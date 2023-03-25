@@ -1,6 +1,8 @@
 import operator
+import random
 from collections import defaultdict
 from functools import reduce
+from numbers import Number
 from typing import Mapping, Sequence, Any, DefaultDict, Dict
 
 
@@ -134,3 +136,31 @@ def remove_nested_key(cfg: Dict[str, Dict], keys: Sequence[str]) -> None:
     else:
         raise TypeError(f"Got: {cfg} for one of the nested values, which is {type(cfg)}, expected a``Mapping``.")
 
+
+def add_uniform_jitter(value: Number, p: Number, reference: Number) -> Number:
+    """
+    Ass jitter to ``value`` based on a fraction, ``p`` of ``reference``:
+
+    .. code-block::
+
+        value = value + random.uniform(-p * reference, p * reference)
+
+    Args:
+        value: jitted will be added to this argument.
+        p: fraction of ``reference`` that will be added to ``value``.
+        reference: the jitter added to ``value`` is sampled from an uniform
+            distribution with range ``a = -p * reference``, ``b = p * reference``.
+
+    Returns:
+        Jittered value.
+
+    Raises:
+        TypeError: if any of the arguments is not a ``Number`` instance.
+    """
+    for (name, num) in [('value', value), ('p', p), ('reference', reference)]:
+        if not isinstance(num, Number):
+            raise TypeError(f"Expected {name} to be a number but got {type(num)}.")
+
+    effective_reference = p * reference
+
+    return value + random.uniform(-effective_reference, effective_reference)
