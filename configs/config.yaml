@@ -108,6 +108,13 @@ transforms:
       integer: true
       _partial_: true
   - _target_: randfig.Formula
+    keys: ["axial_fov"]
+    formula:
+      _target_: randfig.expressions.product
+      a_key: "z_crystal_size"
+      b_key: "num_rings"
+      _partial_: true
+  - _target_: randfig.Formula
     keys: ["energy_resolution"]
     formula:
       _target_: randfig.decorators.accept_cfg
