@@ -99,3 +99,11 @@ transforms:
       key: "crystal_thickness"
       decimals: 1
       _partial_: true
+  - _target_: randfig.Formula
+    keys: ["num_rings"]
+    formula:
+      _target_: randfig.expressions.division
+      num_key: "axial_fov"
+      den_key: "z_crystal_size"
+      integer: true
+      _partial_: true
