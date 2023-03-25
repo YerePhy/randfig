@@ -157,3 +157,27 @@ def division(cfg: Mapping, num_key: str, den_key: str, integer: bool = False) ->
         return num // den
 
     return num / den
+
+
+def product(cfg, a_key: str, b_key: str) -> Number:
+    """
+    Computes ``cfg[a_key] * cfg[b_key]``.
+
+    Args:
+        a_key:
+        b_key:
+
+    Returns:
+        ``cfg[a_key] * cfg[b_key]``.
+
+    Raises:
+        TypeError: if ``cfg[a_key]`` or ``cfg[b_key]`` are not ``Number``.
+    """
+    a = cfg[a_key]
+    b = cfg[b_key]
+
+    for name, var in [('a', a), ('b', b)]:
+        if not isinstance(var, Number):
+            raise TypeError(f"Expected {name} to be a number, got {type(var)}.")
+
+    return a * b
