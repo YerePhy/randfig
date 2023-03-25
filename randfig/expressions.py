@@ -1,5 +1,6 @@
 from numbers import Number
-from typing import Mapping, Any, List
+from typing import Mapping, Any, List, Optional
+from randfig.utils import add_uniform_jitter
 
 
 def pop(cfg: Mapping, key: str, element: int = 0) -> Any:
@@ -52,7 +53,7 @@ def rounding(cfg: Mapping, key: str, decimals: int) -> Any:
 
 
 def min_threshold_from_resolution(cfg: Mapping, resolution_key: str, peak: Number,
-    is_percentage: bool = True, sigmas: Number = 2) -> Number:
+    is_percentage: bool = True, sigmas: Number = 2, jitter: Optional[Number] = None) -> Number:
     """
     Computes a lower threshold (``lower_threshold``) assuming a gaussian distibution:
 
@@ -66,6 +67,9 @@ def min_threshold_from_resolution(cfg: Mapping, resolution_key: str, peak: Numbe
         resolution_key: key whose value is the gaussian resolution (FWHM).
         peak: peak of the resolution curve.
         sigmas: how many sigmas from the peak will be the lower threshold.
+        jitter: a uniform jitter with :py:func:`randfig.utils.add_uniform_jitter`.
+            The value added is sampled from an uniform distribution with
+            ``a = -jitter * peak``, ``b = jitter * peak``.
 
     Returns:
         Lower threshold.
@@ -84,11 +88,14 @@ def min_threshold_from_resolution(cfg: Mapping, resolution_key: str, peak: Numbe
 
     lower_threshold = peak * (1 - sigmas * FWHM_TO_STD * resolution)
 
+    if jitter is not None:
+        lower_threshold = add_uniform_jitter(lower_threshold, jitter, peak)
+
     return lower_threshold
 
 
 def max_threshold_from_resolution(cfg: Mapping, resolution_key: str, peak: Number,
-    is_percentage: bool = True, sigmas: Number = 2) -> Number:
+    is_percentage: bool = True, sigmas: Number = 2, jitter: Optional[Number] = None) -> Number:
     """
     Computes an upper threshold (``upper_threshold``) assuming a gaussian distibution:
 
@@ -102,6 +109,9 @@ def max_threshold_from_resolution(cfg: Mapping, resolution_key: str, peak: Numbe
         resolution_key: key whose value is the gaussian resolution (FWHM).
         peak: peak of the resolution curve.
         sigmas: how many sigmas from the peak will be the upper threshold.
+        jitter: a uniform jitter with :py:func:`randfig.utils.add_uniform_jitter`.
+            The value added is sampled from an uniform distribution with
+            ``a = -jitter * peak``, ``b = jitter * peak``.
 
     Returns:
         Upper threshold.
@@ -119,6 +129,9 @@ def max_threshold_from_resolution(cfg: Mapping, resolution_key: str, peak: Numbe
         raise ValueError(f"is_percentage is {is_percentage} but got a number bigger than 1: {resolution}")
 
     upper_threshold = peak * (1 + sigmas * FWHM_TO_STD * resolution)
+
+    if jitter is not None:
+        upper_threshold = add_uniform_jitter(upper_threshold, jitter, peak)
 
     return upper_threshold
 
