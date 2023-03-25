@@ -144,3 +144,21 @@ def test_division(cfg, kwargs, expected):
         assert out == expected
     else:
         assert math.isclose(out, expected)
+
+
+@pytest.mark.parametrize('cfg,expected', [
+    [{"a": 2, "b": 3}, 6],
+    [{"a": 2.3, "b": 3.5}, 8.05]
+])
+def test_product(cfg, expected):
+    out = expressions.product(cfg, "a", "b")
+    assert math.isclose(out, expected, abs_tol=0.01)
+
+
+@pytest.mark.parametrize('cfg', [
+    {"a": None, "b": 3},
+    {"a": 2.3, "b": ""}
+])
+def test_product_value_error(cfg):
+    with pytest.raises(TypeError):
+        expressions.product(cfg, "a", "b")
