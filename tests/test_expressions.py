@@ -113,3 +113,34 @@ def test_threshold_from_resolution(fn, cfg, kwargs, expected):
 def test_threshold_from_resolution_non_valid_resolution(fn, cfg, kwargs, expected):
     with pytest.raises(ValueError):
         fn(cfg, **kwargs)
+
+
+@pytest.mark.parametrize('cfg,kwargs,expected', [
+    [
+        {"num": 5, "den": 2},
+        {"num_key": "num", "den_key": "den", "integer": False},
+        2.5
+    ],
+    [
+        {"num": 5, "den": 2},
+        {"num_key": "num", "den_key": "den", "integer": True},
+        2
+    ],
+    [
+        {"num": 2, "den": 2},
+        {"num_key": "num", "den_key": "den", "integer": False},
+        1
+    ],
+    [
+        {"num": 2, "den": 2},
+        {"num_key": "num", "den_key": "den", "integer": True},
+        1
+    ]
+])
+def test_division(cfg, kwargs, expected):
+    out = expressions.division(cfg, **kwargs)
+    
+    if kwargs["integer"]:
+        assert out == expected
+    else:
+        assert math.isclose(out, expected)

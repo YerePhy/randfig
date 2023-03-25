@@ -5,9 +5,7 @@ from typing import Mapping, Any, List
 def pop(cfg: Mapping, key: str, element: int = 0) -> Any:
     """
     Pops an element of ``cfg[key]`` if
-    its value is a ``List``. It is intended to use
-    it with :py:func:`randfig.formula.Formula` and ``_partial_: true``
-    in facebook-hydra configs.
+    its value is a ``List``.
 
     Args:
         cfg: ``dict``-like congifuration.
@@ -32,9 +30,7 @@ def pop(cfg: Mapping, key: str, element: int = 0) -> Any:
 def rounding(cfg: Mapping, key: str, decimals: int) -> Any:
     """
     Round the value of ``cfg[key]`` if
-    its value is a ``Number``. It is intended to use
-    it with :py:func:`randfig.formula.Formula` and ``_partial_: true``
-    in facebook-hydra configs.
+    its value is a ``Number``.
 
     Args:
         cfg: ``dict``-like congifuration.
@@ -64,9 +60,6 @@ def min_threshold_from_resolution(cfg: Mapping, resolution_key: str, peak: Numbe
 
         FWHM_TO_STD = 1 / 2.355
         lower_threshold = peak * (1 - sigmas * FWHM_TO_STD * resolution)
-
-    It is intended to use it with :py:func:`randfig.formula.Formula` and ``_partial_: true``
-    in facebook-hydra configs.
 
     Args:
         cfg: ``dict``-like config having a resolution as a value.
@@ -104,9 +97,6 @@ def max_threshold_from_resolution(cfg: Mapping, resolution_key: str, peak: Numbe
         FWHM_TO_STD = 1 / 2.355
         lower_threshold = peak * (1 + sigmas * FWHM_TO_STD * resolution)
 
-    It is intended to use it with :py:func:`randfig.formula.Formula` and ``_partial_: true``
-    in facebook-hydra configs.
-
     Args:
         cfg: ``dict``-like config having a resolution as a value.
         resolution_key: key whose value is the gaussian resolution (FWHM).
@@ -131,3 +121,26 @@ def max_threshold_from_resolution(cfg: Mapping, resolution_key: str, peak: Numbe
     upper_threshold = peak * (1 + sigmas * FWHM_TO_STD * resolution)
 
     return upper_threshold
+
+
+def division(cfg: Mapping, num_key: str, den_key: str, integer: bool = False) -> Number:
+    """
+    Computes division or integer division between
+    the specified keys of ``cfg``.
+
+    Args:
+        cfg: ``dict``-like configuration.
+        num_key: numberator key.
+        den_key: denominator key.
+        integer: whether to perform integer division or not.
+
+    Returns:
+        Division between the values of specified keys.
+    """
+    num = cfg[num_key]
+    den = cfg[den_key]
+
+    if integer:
+        return num // den
+
+    return num / den
