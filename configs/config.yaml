@@ -164,3 +164,10 @@ transforms:
       key: "max_energy_window"
       decimals: 1
       _partial_: true
+  - _target_: randfig.Formula
+    keys: ["axial_fov"]
+    formula:
+      _target_: randfig.expressions.rounding
+      key: "axial_fov"
+      decimals: 1
+      _partial_: true
