@@ -5,6 +5,7 @@ from random import randint
 from pathlib import Path
 from omegaconf import DictConfig, OmegaConf
 from pyprojroot import here
+from randfig import Save
 
 
 config_path = here().joinpath("configs/config.yaml")
@@ -31,9 +32,14 @@ def main(cfg: DictConfig):
     Generate random configs.
     """
     OmegaConf.resolve(cfg)
-    tfs = hydra.utils.instantiate(cfg, _recursive_=True)
-    out_cfg = tfs({})
-    log.info(out_cfg)
+    cfg = hydra.utils.instantiate(cfg, _recursive_=True)
+
+    for n in range(cfg["n_random_configs"]):
+        out = cfg["compose"]({})
+        Save(
+            save_dir=here().joinpath("scanner_randfigs"),
+            filename=f"config_{n}.yaml",
+        )(out)
 
 
 if __name__ == '__main__':
