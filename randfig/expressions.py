@@ -1,3 +1,4 @@
+import math
 from numbers import Number
 from typing import Mapping, Any, List, Optional
 from randfig.utils import add_uniform_jitter
@@ -154,7 +155,7 @@ def division(cfg: Mapping, num_key: str, den_key: str, integer: bool = False) ->
     den = cfg[den_key]
 
     if integer:
-        return num // den
+        return int(num // den)
 
     return num / den
 
@@ -181,3 +182,79 @@ def product(cfg, a_key: str, b_key: str) -> Number:
             raise TypeError(f"Expected {name} to be a number, got {type(var)}.")
 
     return a * b
+
+
+def get_regular_polygon_sides(cfg: Mapping, side_len_key: str, apothem_key: str) -> int:
+    """
+    Computes the sides of a regular polygon
+    given side length and apothem.
+
+    Args:
+        cfg: ``dict``-like config.
+        side_len_key: key whose value is the length of the polygon's side.
+        apothem_key: key whose value is the length of the polygon's apothem.
+
+    Returns:
+        The number of sides of the regular polygon.
+
+    Raises:
+        TypeError: if ``cfg[side_len_key]`` or ``cfg[apothem_key]`` are not ``Number``.
+    """
+    side_len = cfg[side_len_key]
+    apothem = cfg[apothem_key]
+
+    for name, var in [('side_len', side_len), ('apothem', apothem)]:
+        if not isinstance(var, Number):
+            raise TypeError(f"Expected {name} to be a number, got {type(var)}.")
+
+    return int(round(math.pi / math.atan(side_len / (2 * apothem)), 0))
+
+
+def round_to_closest_even(cfg, key_n: str) -> int:
+    """
+    Rounds ``cfg[key_n]`` value to the closest even number.
+
+    Args:
+        cfg: ``dict``-like config.
+        key_n: key whose value is a number to round up to the closest even.
+
+    Returns:
+        The closest even to ``cfg{key_n]``.
+
+    Raises:
+        TypeError: when ``cfg{key_n]`` is not a ``Number`` instance.
+    """
+    n = int(cfg[key_n])
+
+    for name, var in [('n', n)]:
+        if not isinstance(var, Number):
+            raise TypeError(f"Expected {name} to be a number, got {type(var)}.")
+
+    return 2 if n < 1 else int(math.ceil(n / 2.) * 2)
+
+
+def get_regular_polygon_apothem(cfg: Mapping, side_len_key: str,
+    n_sides_key: str) -> Number:
+    """
+    Computes the apothem of a regular polygon
+    given its number and length of sides.
+
+    Args:
+        cfg: ``dict``-like config.
+        side_len_key: key whose value is the length of the polygon's side.
+        n_sides_key: key whose value is the number of sides.
+
+    Returns:
+        The apothem of the regular polygon
+
+    Raises:
+        TypeError: when ``cfg[side_len_key]`` is not a ``Number`` instance
+    """
+    side_len = cfg[side_len_key]
+    n_sides = int(cfg[n_sides_key])
+
+    if not isinstance(side_len, Number):
+        raise TypeError(f"Expected {side_len} to be a number, got {type(side_len)}.")
+
+    return side_len / (2 * math.tan(math.pi / n_sides))
+
