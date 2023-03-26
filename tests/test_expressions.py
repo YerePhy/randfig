@@ -146,6 +146,67 @@ def test_division(cfg, kwargs, expected):
         assert math.isclose(out, expected)
 
 
+@pytest.mark.parametrize('cfg,kwargs', [
+    [
+        {"num": "", "den": 2},
+        {"num_key": "num", "den_key": "den"},
+    ],
+    [
+        {"num": 5, "den": ""},
+        {"num_key": "num", "den_key": "den"},
+    ]
+])
+def test_division_type_error(cfg, kwargs):
+    with pytest.raises(TypeError):
+        expressions.division(cfg, **kwargs)
+
+
+@pytest.mark.parametrize('cfg,kwargs,expected', [
+    [
+        {"n": 5},
+        {"n_key": "n", "num": 2, "integer": False},
+        2.5
+    ],
+    [
+        {"n": 5},
+        {"n_key": "n", "num": 2, "integer": True},
+        2
+    ],
+    [
+        {"n": 2},
+        {"n_key": "n", "num": 2, "integer": False},
+        1
+    ],
+    [
+        {"n": 2},
+        {"n_key": "n", "num": 2, "integer": True},
+        1
+    ]
+])
+def test_division_by_num(cfg, kwargs, expected):
+    out = expressions.division_by_num(cfg, **kwargs)
+
+    if kwargs["integer"]:
+        assert out == expected
+    else:
+        assert math.isclose(out, expected)
+
+
+@pytest.mark.parametrize('cfg,kwargs', [
+    [
+        {"n": ""},
+        {"n_key": "n", "num": 2},
+    ],
+    [
+        {"n": 2},
+        {"n_key": "n", "num": ""},
+    ]
+])
+def test_division_by_num_type_error(cfg, kwargs):
+    with pytest.raises(TypeError):
+        expressions.division_by_num(cfg, **kwargs)
+
+
 @pytest.mark.parametrize('cfg,expected', [
     [{"a": 2, "b": 3}, 6],
     [{"a": 2.3, "b": 3.5}, 8.05]
@@ -162,6 +223,38 @@ def test_product(cfg, expected):
 def test_product_value_error(cfg):
     with pytest.raises(TypeError):
         expressions.product(cfg, "a", "b")
+
+
+@pytest.mark.parametrize('cfg,kwargs,expected', [
+    [
+        {"n": 2},
+        {"n_key": "n", "num": 3},
+        6
+    ],
+    [
+        {"n": 2.3},
+        {"n_key": "n", "num": 3.5},
+        8.05
+    ]
+])
+def test_product_by_num(cfg, kwargs, expected):
+    out = expressions.product_by_num(cfg, **kwargs)
+    assert math.isclose(out, expected)
+
+
+@pytest.mark.parametrize('cfg,kwargs', [
+    [
+        {"n": ""},
+        {"n_key": "n", "num": 2},
+    ],
+    [
+        {"n": 2},
+        {"n_key": "n", "num": ""},
+    ]
+])
+def test_product_by_num_type_error(cfg, kwargs):
+    with pytest.raises(TypeError):
+        expressions.product_by_num(cfg, **kwargs)
 
 
 @pytest.mark.parametrize('cfg,expected', [
