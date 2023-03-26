@@ -212,7 +212,7 @@ def get_regular_polygon_sides(cfg: Mapping, side_len_key: str, apothem_key: str)
 
 def round_to_closest_even(cfg, key_n: str) -> int:
     """
-    Stub.
+    Rounds ``cfg[key_n]`` value to the closest even number.
 
     Args:
         cfg: ``dict``-like config.
@@ -231,3 +231,30 @@ def round_to_closest_even(cfg, key_n: str) -> int:
             raise TypeError(f"Expected {name} to be a number, got {type(var)}.")
 
     return 2 if n < 1 else int(math.ceil(n / 2.) * 2)
+
+
+def get_regular_polygon_apothem(cfg: Mapping, side_len_key: str,
+    n_sides_key: str) -> Number:
+    """
+    Computes the apothem of a regular polygon
+    given its number and length of sides.
+
+    Args:
+        cfg: ``dict``-like config.
+        side_len_key: key whose value is the length of the polygon's side.
+        n_sides_key: key whose value is the number of sides.
+
+    Returns:
+        The apothem of the regular polygon
+
+    Raises:
+        TypeError: when ``cfg[side_len_key]`` is not a ``Number`` instance
+    """
+    side_len = cfg[side_len_key]
+    n_sides = int(cfg[n_sides_key])
+
+    if not isinstance(side_len, Number):
+        raise TypeError(f"Expected {side_len} to be a number, got {type(side_len)}.")
+
+    return side_len / (2 * math.tan(math.pi / n_sides))
+

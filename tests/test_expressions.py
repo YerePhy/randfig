@@ -205,3 +205,24 @@ def test_round_to_closest_even(cfg, expected):
 def test_round_to_closest_even_type_error(cfg):
     with pytest.raises(TypeError):
         expressions.round_to_closest_even(cfg, "key")
+
+
+@pytest.mark.parametrize('cfg,expected', [
+    [{"side_len": 4, "n_sides": 5}, 2.75276],
+    [{"side_len": 4, "n_sides": 6}, 3.464101],
+    [{"side_len": 0.5, "n_sides": 1000}, 79.57720],
+    [{"side_len": 0.5, "n_sides": 10000}, 795.77468],
+    [{"side_len": 0.5, "n_sides": 100001}, 7957.82672]
+])
+def test_get_regular_polygon_apothem(cfg, expected):
+    out = expressions.get_regular_polygon_apothem(cfg, "side_len", "n_sides")
+    assert math.isclose(out, expected, abs_tol=0.0001)
+
+
+@pytest.mark.parametrize('cfg', [
+    {"side_len": "", "apothem": 2.75},
+    {"side_len": 4, "apothem": []},
+])
+def test_get_regular_polygon_sides_value_error(cfg):
+    with pytest.raises(TypeError):
+        expressions.get_regular_polygon_sides(cfg, "side_len", "apothem")
