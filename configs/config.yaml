@@ -10,13 +10,6 @@ transforms:
         - ${stats:scanner_radius_min}
         - ${stats:scanner_radius_max}
   - _target_: randfig.Formula
-    keys: ["scanner_radius"]
-    formula:
-      _target_: randfig.expressions.rounding
-      key: "scanner_radius"
-      decimals: 1
-      _partial_: true
-  - _target_: randfig.Formula
     keys: ["axial_fov"]
     formula:
       _target_: randfig.decorators.accept_cfg
@@ -25,13 +18,6 @@ transforms:
           path: random.uniform
         - ${stats:axial_fov_min}
         - ${stats:axial_fov_max}
-  - _target_: randfig.Formula
-    keys: ["axial_fov"]
-    formula:
-      _target_: randfig.expressions.rounding
-      key: "axial_fov"
-      decimals: 1
-      _partial_: true
   - _target_: randfig.Formula
     keys: ["simset_material"]
     formula:
@@ -61,13 +47,6 @@ transforms:
         - ${stats:z_crystal_size_min}
         - ${stats:z_crystal_size_max}
   - _target_: randfig.Formula
-    keys: ["z_crystal_size"]
-    formula:
-      _target_: randfig.expressions.rounding
-      key: "z_crystal_size"
-      decimals: 1
-      _partial_: true
-  - _target_: randfig.Formula
     keys: ["transaxial_crystal_size"]
     formula:
       _target_: randfig.decorators.accept_cfg
@@ -77,13 +56,6 @@ transforms:
         - ${stats:transaxial_crystal_size_min}
         - ${stats:transaxial_crystal_size_max}
   - _target_: randfig.Formula
-    keys: ["transaxial_crystal_size"]
-    formula:
-      _target_: randfig.expressions.rounding
-      key: "transaxial_crystal_size"
-      decimals: 1
-      _partial_: true
-  - _target_: randfig.Formula
     keys: ["crystal_thickness"]
     formula:
       _target_: randfig.decorators.accept_cfg
@@ -92,13 +64,6 @@ transforms:
           path: random.uniform
         - ${stats:crystal_thickness_min}
         - ${stats:crystal_thickness_max}
-  - _target_: randfig.Formula
-    keys: ["crystal_thickness"]
-    formula:
-      _target_: randfig.expressions.rounding
-      key: "crystal_thickness"
-      decimals: 1
-      _partial_: true
   - _target_: randfig.Formula
     keys: ["num_rings"]
     formula:
@@ -124,13 +89,6 @@ transforms:
         - ${stats:energy_resolution_min}
         - ${stats:energy_resolution_max}
   - _target_: randfig.Formula
-    keys: ["energy_resolution"]
-    formula:
-      _target_: randfig.expressions.rounding
-      key: "energy_resolution"
-      decimals: 1
-      _partial_: true
-  - _target_: randfig.Formula
     keys: ["min_energy_window"]
     formula:
       _target_: randfig.expressions.min_threshold_from_resolution
@@ -139,13 +97,6 @@ transforms:
       is_percentage: true
       sigmas: 2
       jitter: 0.015
-      _partial_: true
-  - _target_: randfig.Formula
-    keys: ["min_energy_window"]
-    formula:
-      _target_: randfig.expressions.rounding
-      key: "min_energy_window"
-      decimals: 1
       _partial_: true
   - _target_: randfig.Formula
     keys: ["max_energy_window"]
@@ -158,16 +109,79 @@ transforms:
       jitter: 0.015
       _partial_: true
   - _target_: randfig.Formula
-    keys: ["max_energy_window"]
+    keys: ["n_transaxial_detectors"]
     formula:
-      _target_: randfig.expressions.rounding
-      key: "max_energy_window"
-      decimals: 1
+      _target_: randfig.expressions.get_regular_polygon_sides
+      side_len_key: "transaxial_crystal_size"
+      apothem_key: "scanner_radius"
       _partial_: true
+  - _target_: randfig.Formula
+    keys: ["n_transaxial_detectors"]
+    formula:
+      _target_: randfig.expressions.round_to_closest_even
+      key_n: "n_transaxial_detectors"
+      _partial_: true
+  - _target_: randfig.Formula
+    keys: ["scanner_radius"]
+    formula:
+      _target_: randfig.expressions.get_regular_polygon_apothem
+      side_len_key: "transaxial_crystal_size"
+      n_sides_key: "n_transaxial_detectors"
+      _partial_: true
+  # Roundings
   - _target_: randfig.Formula
     keys: ["axial_fov"]
     formula:
       _target_: randfig.expressions.rounding
       key: "axial_fov"
+      decimals: 1
+      _partial_: true
+  - _target_: randfig.Formula
+    keys: ["scanner_radius"]
+    formula:
+      _target_: randfig.expressions.rounding
+      key: "scanner_radius"
+      decimals: 1
+      _partial_: true
+  - _target_: randfig.Formula
+    keys: ["z_crystal_size"]
+    formula:
+      _target_: randfig.expressions.rounding
+      key: "z_crystal_size"
+      decimals: 1
+      _partial_: true
+  - _target_: randfig.Formula
+    keys: ["transaxial_crystal_size"]
+    formula:
+      _target_: randfig.expressions.rounding
+      key: "transaxial_crystal_size"
+      decimals: 1
+      _partial_: true
+  - _target_: randfig.Formula
+    keys: ["crystal_thickness"]
+    formula:
+      _target_: randfig.expressions.rounding
+      key: "crystal_thickness"
+      decimals: 1
+      _partial_: true
+  - _target_: randfig.Formula
+    keys: ["energy_resolution"]
+    formula:
+      _target_: randfig.expressions.rounding
+      key: "energy_resolution"
+      decimals: 1
+      _partial_: true
+  - _target_: randfig.Formula
+    keys: ["min_energy_window"]
+    formula:
+      _target_: randfig.expressions.rounding
+      key: "min_energy_window"
+      decimals: 1
+      _partial_: true
+  - _target_: randfig.Formula
+    keys: ["max_energy_window"]
+    formula:
+      _target_: randfig.expressions.rounding
+      key: "max_energy_window"
       decimals: 1
       _partial_: true
