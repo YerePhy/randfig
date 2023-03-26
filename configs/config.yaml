@@ -1,187 +1,214 @@
-_target_: randfig.Compose
-transforms:
-  - _target_: randfig.Formula
-    keys: ["scanner_radius"]
-    formula:
-      _target_: randfig.decorators.accept_cfg
-      _args_:
-        - _target_: hydra.utils.get_method
-          path: random.uniform
-        - ${stats:scanner_radius_min}
-        - ${stats:scanner_radius_max}
-  - _target_: randfig.Formula
-    keys: ["axial_fov"]
-    formula:
-      _target_: randfig.decorators.accept_cfg
-      _args_:
-        - _target_: hydra.utils.get_method
-          path: random.uniform
-        - ${stats:axial_fov_min}
-        - ${stats:axial_fov_max}
-  - _target_: randfig.Formula
-    keys: ["simset_material"]
-    formula:
-      _target_: randfig.decorators.accept_cfg
-      _args_:
-        - _target_: hydra.utils.get_method
-          path: random.choices
-      population:
-        - ${stats:BGO}
-        - ${stats:LSO}
-        - ${stats:LYSO}
-        - ${stats:GSO}
-  - _target_: randfig.Formula
-    keys: ["simset_material"]
-    formula:
-      _target_: randfig.expressions.pop
-      key: "simset_material"
-      element: 0
-      _partial_: true
-  - _target_: randfig.Formula
-    keys: ["z_crystal_size"]
-    formula:
-      _target_: randfig.decorators.accept_cfg
-      _args_:
-        - _target_: hydra.utils.get_method
-          path: random.uniform
-        - ${stats:z_crystal_size_min}
-        - ${stats:z_crystal_size_max}
-  - _target_: randfig.Formula
-    keys: ["transaxial_crystal_size"]
-    formula:
-      _target_: randfig.decorators.accept_cfg
-      _args_:
-        - _target_: hydra.utils.get_method
-          path: random.uniform
-        - ${stats:transaxial_crystal_size_min}
-        - ${stats:transaxial_crystal_size_max}
-  - _target_: randfig.Formula
-    keys: ["crystal_thickness"]
-    formula:
-      _target_: randfig.decorators.accept_cfg
-      _args_:
-        - _target_: hydra.utils.get_method
-          path: random.uniform
-        - ${stats:crystal_thickness_min}
-        - ${stats:crystal_thickness_max}
-  - _target_: randfig.Formula
-    keys: ["num_rings"]
-    formula:
-      _target_: randfig.expressions.division
-      num_key: "axial_fov"
-      den_key: "z_crystal_size"
-      integer: true
-      _partial_: true
-  - _target_: randfig.Formula
-    keys: ["axial_fov"]
-    formula:
-      _target_: randfig.expressions.product
-      a_key: "z_crystal_size"
-      b_key: "num_rings"
-      _partial_: true
-  - _target_: randfig.Formula
-    keys: ["energy_resolution"]
-    formula:
-      _target_: randfig.decorators.accept_cfg
-      _args_:
-        - _target_: hydra.utils.get_method
-          path: random.uniform
-        - ${stats:energy_resolution_min}
-        - ${stats:energy_resolution_max}
-  - _target_: randfig.Formula
-    keys: ["min_energy_window"]
-    formula:
-      _target_: randfig.expressions.min_threshold_from_resolution
-      resolution_key: "energy_resolution"
-      peak: 511
-      is_percentage: true
-      sigmas: 2
-      jitter: 0.015
-      _partial_: true
-  - _target_: randfig.Formula
-    keys: ["max_energy_window"]
-    formula:
-      _target_: randfig.expressions.max_threshold_from_resolution
-      resolution_key: "energy_resolution"
-      peak: 511
-      is_percentage: true
-      sigmas: 2
-      jitter: 0.015
-      _partial_: true
-  - _target_: randfig.Formula
-    keys: ["n_transaxial_detectors"]
-    formula:
-      _target_: randfig.expressions.get_regular_polygon_sides
-      side_len_key: "transaxial_crystal_size"
-      apothem_key: "scanner_radius"
-      _partial_: true
-  - _target_: randfig.Formula
-    keys: ["n_transaxial_detectors"]
-    formula:
-      _target_: randfig.expressions.round_to_closest_even
-      key_n: "n_transaxial_detectors"
-      _partial_: true
-  - _target_: randfig.Formula
-    keys: ["scanner_radius"]
-    formula:
-      _target_: randfig.expressions.get_regular_polygon_apothem
-      side_len_key: "transaxial_crystal_size"
-      n_sides_key: "n_transaxial_detectors"
-      _partial_: true
-  # Roundings
-  - _target_: randfig.Formula
-    keys: ["axial_fov"]
-    formula:
-      _target_: randfig.expressions.rounding
-      key: "axial_fov"
-      decimals: 1
-      _partial_: true
-  - _target_: randfig.Formula
-    keys: ["scanner_radius"]
-    formula:
-      _target_: randfig.expressions.rounding
-      key: "scanner_radius"
-      decimals: 1
-      _partial_: true
-  - _target_: randfig.Formula
-    keys: ["z_crystal_size"]
-    formula:
-      _target_: randfig.expressions.rounding
-      key: "z_crystal_size"
-      decimals: 1
-      _partial_: true
-  - _target_: randfig.Formula
-    keys: ["transaxial_crystal_size"]
-    formula:
-      _target_: randfig.expressions.rounding
-      key: "transaxial_crystal_size"
-      decimals: 1
-      _partial_: true
-  - _target_: randfig.Formula
-    keys: ["crystal_thickness"]
-    formula:
-      _target_: randfig.expressions.rounding
-      key: "crystal_thickness"
-      decimals: 1
-      _partial_: true
-  - _target_: randfig.Formula
-    keys: ["energy_resolution"]
-    formula:
-      _target_: randfig.expressions.rounding
-      key: "energy_resolution"
-      decimals: 1
-      _partial_: true
-  - _target_: randfig.Formula
-    keys: ["min_energy_window"]
-    formula:
-      _target_: randfig.expressions.rounding
-      key: "min_energy_window"
-      decimals: 1
-      _partial_: true
-  - _target_: randfig.Formula
-    keys: ["max_energy_window"]
-    formula:
-      _target_: randfig.expressions.rounding
-      key: "max_energy_window"
-      decimals: 1
-      _partial_: true
+# Random parameters:
+#   - "axial_fov": uniform (corrected after the computation of "num_rings").
+#   - "scanner_radius": uniform.
+#   - "z_crystal_size": uniform.
+#   - "transaxial_crystal_size": uniform.
+#   - "crystal_thickness": uniform.
+#   - "energy_resolution": uniform.
+#   - "simset_material": weighted choice.
+# Dependent parameters:
+#   - "num_rings": computed from "axial_fov" and "z_crystal_size".
+#   - "min_energy_window": computed from "energy_resolution"
+#     (assuming it is gaussian).
+#   - "max_energy_window": computed from "energy_resolution"
+#     (assuming it is gaussian).
+#   - "num_aa_views": computed from "transaxial_crystal_size" and
+#     "scanner_radius", first the number of detectors per ring is computed
+#     assuming that rings are regular polygons.
+n_random_configs: 1000
+compose:
+  _target_: randfig.Compose
+  transforms:
+    - _target_: randfig.Formula
+      keys: ["scanner_radius"]
+      formula:
+        _target_: randfig.decorators.accept_cfg
+        _args_:
+          - _target_: hydra.utils.get_method
+            path: random.uniform
+          - ${stats:scanner_radius_min}
+          - ${stats:scanner_radius_max}
+    - _target_: randfig.Formula
+      keys: ["axial_fov"]
+      formula:
+        _target_: randfig.decorators.accept_cfg
+        _args_:
+          - _target_: hydra.utils.get_method
+            path: random.uniform
+          - ${stats:axial_fov_min}
+          - ${stats:axial_fov_max}
+    - _target_: randfig.Formula
+      keys: ["simset_material"]
+      formula:
+        _target_: randfig.decorators.accept_cfg
+        _args_:
+          - _target_: hydra.utils.get_method
+            path: random.choices
+        population:
+          - ${stats:BGO}
+          - ${stats:LSO}
+          - ${stats:LYSO}
+          - ${stats:GSO}
+    - _target_: randfig.Formula
+      keys: ["simset_material"]
+      formula:
+        _target_: randfig.expressions.pop
+        key: "simset_material"
+        element: 0
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["z_crystal_size"]
+      formula:
+        _target_: randfig.decorators.accept_cfg
+        _args_:
+          - _target_: hydra.utils.get_method
+            path: random.uniform
+          - ${stats:z_crystal_size_min}
+          - ${stats:z_crystal_size_max}
+    - _target_: randfig.Formula
+      keys: ["transaxial_crystal_size"]
+      formula:
+        _target_: randfig.decorators.accept_cfg
+        _args_:
+          - _target_: hydra.utils.get_method
+            path: random.uniform
+          - ${stats:transaxial_crystal_size_min}
+          - ${stats:transaxial_crystal_size_max}
+    - _target_: randfig.Formula
+      keys: ["crystal_thickness"]
+      formula:
+        _target_: randfig.decorators.accept_cfg
+        _args_:
+          - _target_: hydra.utils.get_method
+            path: random.uniform
+          - ${stats:crystal_thickness_min}
+          - ${stats:crystal_thickness_max}
+    - _target_: randfig.Formula
+      keys: ["num_rings"]
+      formula:
+        _target_: randfig.expressions.division
+        num_key: "axial_fov"
+        den_key: "z_crystal_size"
+        integer: true
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["axial_fov"]
+      formula:
+        _target_: randfig.expressions.product
+        a_key: "z_crystal_size"
+        b_key: "num_rings"
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["energy_resolution"]
+      formula:
+        _target_: randfig.decorators.accept_cfg
+        _args_:
+          - _target_: hydra.utils.get_method
+            path: random.uniform
+          - ${stats:energy_resolution_min}
+          - ${stats:energy_resolution_max}
+    - _target_: randfig.Formula
+      keys: ["min_energy_window"]
+      formula:
+        _target_: randfig.expressions.min_threshold_from_resolution
+        resolution_key: "energy_resolution"
+        peak: 511
+        is_percentage: true
+        sigmas: 2
+        jitter: 0.015
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["max_energy_window"]
+      formula:
+        _target_: randfig.expressions.max_threshold_from_resolution
+        resolution_key: "energy_resolution"
+        peak: 511
+        is_percentage: true
+        sigmas: 2
+        jitter: 0.015
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["n_transaxial_detectors"]
+      formula:
+        _target_: randfig.expressions.get_regular_polygon_sides
+        side_len_key: "transaxial_crystal_size"
+        apothem_key: "scanner_radius"
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["n_transaxial_detectors"]
+      formula:
+        _target_: randfig.expressions.round_to_closest_even
+        key_n: "n_transaxial_detectors"
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["scanner_radius"]
+      formula:
+        _target_: randfig.expressions.get_regular_polygon_apothem
+        side_len_key: "transaxial_crystal_size"
+        n_sides_key: "n_transaxial_detectors"
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["num_aa_bins"]
+      formula:
+        _target_: randfig.expressions.division_by_num
+        n_key: "n_transaxial_detectors"
+        num: 2
+        integer: true
+        _partial_: true
+    # Roundings
+    - _target_: randfig.Formula
+      keys: ["axial_fov"]
+      formula:
+        _target_: randfig.expressions.rounding
+        key: "axial_fov"
+        decimals: 1
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["scanner_radius"]
+      formula:
+        _target_: randfig.expressions.rounding
+        key: "scanner_radius"
+        decimals: 1
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["z_crystal_size"]
+      formula:
+        _target_: randfig.expressions.rounding
+        key: "z_crystal_size"
+        decimals: 1
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["transaxial_crystal_size"]
+      formula:
+        _target_: randfig.expressions.rounding
+        key: "transaxial_crystal_size"
+        decimals: 1
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["crystal_thickness"]
+      formula:
+        _target_: randfig.expressions.rounding
+        key: "crystal_thickness"
+        decimals: 1
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["energy_resolution"]
+      formula:
+        _target_: randfig.expressions.rounding
+        key: "energy_resolution"
+        decimals: 1
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["min_energy_window"]
+      formula:
+        _target_: randfig.expressions.rounding
+        key: "min_energy_window"
+        decimals: 1
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["max_energy_window"]
+      formula:
+        _target_: randfig.expressions.rounding
+        key: "max_energy_window"
+        decimals: 1
+        _partial_: true
