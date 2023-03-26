@@ -144,20 +144,55 @@ def division(cfg: Mapping, num_key: str, den_key: str, integer: bool = False) ->
 
     Args:
         cfg: ``dict``-like configuration.
-        num_key: numberator key.
+        num_key: numerator key.
         den_key: denominator key.
         integer: whether to perform integer division or not.
 
     Returns:
         Division between the values of specified keys.
+
+    Raises:
+        TypeError: if ``cfg[num_key]`` or ``cfg[den_key]`` are not ``Number`` instances.
     """
     num = cfg[num_key]
     den = cfg[den_key]
+
+    for name, var in [('num', num), ('den', den)]:
+        if not isinstance(var, Number):
+            raise TypeError(f"Expected {name} to be a number, got {type(var)}.")
 
     if integer:
         return int(num // den)
 
     return num / den
+
+
+def division_by_num(cfg: Mapping, n_key: str, num: Number, integer: bool = False) -> Number:
+    """
+    Computes division or integer division between ``cfg[n_key]`` and ``num``.
+
+    Args:
+        cfg: ``dict``-like configuration.
+        n_key: key whose value is the number to be devided.
+        num: divisor.
+        integer: whether to perform integer division or not.
+
+    Returns:
+        Division between ``cfg[n_key]`` and ``num``.
+
+    Raises:
+        TypeError: if ``cfg[n_key]`` or ``num`` are not ``Number`` instances.
+    """
+    n = cfg[n_key]
+
+    for name, var in [('num', num), ('n', n)]:
+        if not isinstance(var, Number):
+            raise TypeError(f"Expected {name} to be a number, got {type(var)}.")
+
+    if integer:
+        return int(n // num)
+
+    return n / num
 
 
 def product(cfg, a_key: str, b_key: str) -> Number:
@@ -182,6 +217,30 @@ def product(cfg, a_key: str, b_key: str) -> Number:
             raise TypeError(f"Expected {name} to be a number, got {type(var)}.")
 
     return a * b
+
+
+def product_by_num(cfg: Mapping, n_key: str, num: Number) -> Number:
+    """
+    Computes product between ``cfg[n_key]`` and ``num``.
+
+    Args:
+        cfg: ``dict``-like configuration.
+        n_key: key whose value is the number to be multiplied.
+        num: multiplier.
+
+    Returns:
+        Multiplication between ``cfg[n_key]`` and ``num``.
+
+    Raises:
+        TypeError: if ``cfg[n_key]`` or ``num`` are not ``Number`` instances.
+    """
+    n = cfg[n_key]
+
+    for name, var in [('num', num), ('n', n)]:
+        if not isinstance(var, Number):
+            raise TypeError(f"Expected {name} to be a number, got {type(var)}.")
+
+    return n * num
 
 
 def get_regular_polygon_sides(cfg: Mapping, side_len_key: str, apothem_key: str) -> int:

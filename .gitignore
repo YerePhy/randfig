@@ -134,4 +134,4 @@ dmypy.json
 *~
 
 # hydra outputs
-**outputs/**
+**/outputs/**
