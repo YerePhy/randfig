@@ -162,3 +162,46 @@ def test_product(cfg, expected):
 def test_product_value_error(cfg):
     with pytest.raises(TypeError):
         expressions.product(cfg, "a", "b")
+
+
+@pytest.mark.parametrize('cfg,expected', [
+    [{"side_len": 4, "apothem": 2.75}, 5],
+    [{"side_len": 4, "apothem": 3.4}, 6],
+    [{"side_len": 0.5, "apothem": 79.57}, 1000],
+    [{"side_len": 0.5, "apothem": 795.77}, 10000],
+    [{"side_len": 0.5, "apothem": 7957.82}, 100001]
+])
+def test_get_regular_polygon_sides(cfg, expected):
+    out = expressions.get_regular_polygon_sides(cfg, "side_len", "apothem")
+    assert out == expected
+
+
+@pytest.mark.parametrize('cfg', [
+    {"side_len": "", "apothem": 2.75},
+    {"side_len": 4, "apothem": []},
+])
+def test_get_regular_polygon_sides_value_error(cfg):
+    with pytest.raises(TypeError):
+        expressions.get_regular_polygon_sides(cfg, "side_len", "apothem")
+
+
+@pytest.mark.parametrize('cfg,expected', [
+    [{"key": 0}, 2],
+    [{"key": 0.1}, 2],
+    [{"key": 0.5}, 2],
+    [{"key": 0.8}, 2],
+    [{"key": 99}, 100],
+    [{"key": 10057.85}, 10058],
+    [{"key": 10057.01}, 10058],
+    [{"key": 10056.01}, 10056],
+    [{"key": 10056.85}, 10056],
+])
+def test_round_to_closest_even(cfg, expected):
+    out = expressions.round_to_closest_even(cfg, "key")
+    assert out == expected
+
+
+@pytest.mark.parametrize('cfg', [{"key": {}}])
+def test_round_to_closest_even_type_error(cfg):
+    with pytest.raises(TypeError):
+        expressions.round_to_closest_even(cfg, "key")
