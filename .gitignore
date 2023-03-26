@@ -132,3 +132,6 @@ dmypy.json
 *.swp
 *.swo 
 *~
+
+# hydra outputs
+**outputs/**
