@@ -18,10 +18,10 @@ class Nest(ConfigTransform):
 
         init_config = {"param_0": 1, "param_1": 2, "param_2": 3}
         nest = Nest(keys=["param_0", "param_1"], root="root")
+        nested = nest(init_config)
 
         # --- hide: start ---
-        nested = nest(init_config)
-        print(nested)
+        print(f"nested: {nested}")
         # --- hide: stop ---
     """
 

@@ -19,8 +19,8 @@ def accept_cfg(fn: Callable[[Any], Any], *args: Any, **kwargs: Any) -> Callable[
           _args_:
             - _target_: hydra.utils.get_method
               path: random.uniform
-            - ${stats:scanner_radius_min}
-            - ${stats:scanner_radius_max}
+            - 20
+            - 30
 
     Args:
         fn: a callable.

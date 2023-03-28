@@ -24,7 +24,7 @@ class Remove(ConfigTransform):
         removed = remove(init_config)
 
         # --- hide: start ---
-        print(removed)
+        print(f"removed: {removed}")
         # --- hide: stop ---
     """
 
