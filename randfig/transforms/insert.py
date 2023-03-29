@@ -22,7 +22,7 @@ class Insert(ConfigTransform):
         inserted = Insert(keys=["param_2"], value=2)
 
         # --- hide: start ---
-        print(inserted)
+        print(f"inserted: {inserted}")
         # --- hide: stop ---
     """
 

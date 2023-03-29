@@ -10,7 +10,7 @@ def get_nested_value(mapping: Mapping, map_list: Sequence[str]) -> Any:
     """
     Get the value of nested keys.
 
-    .. exec-code::
+    .. exec_code::
 
         # --- hide: start ---
         from randfig.utils import get_nested_value
@@ -20,7 +20,7 @@ def get_nested_value(mapping: Mapping, map_list: Sequence[str]) -> Any:
         nested_val = get_nested_value(nested, ["param_root", "param_nested"])
 
         # --- hide: start ---
-        print(nested_val)
+        print(f"nested_val: {nested_val}")
         # --- hide: stop ---
 
     Args:
@@ -70,17 +70,17 @@ def insert_nested_key(cfg: Dict[str, Dict], keys: Sequence[str], value: Any) -> 
     Insert a key, value pair or update a value
     of a nested ``Mapping``.
 
-    .. exec-code::
+    .. exec_code::
 
         # --- hide: start ---
         from randfig.utils import insert_nested_key
         # --- hide: stop ---
 
         cfg = {"param_root_0": {"param_00": "value_00", "param_01": "value_01"}}
-        insert_nested_key(cfg, ["param_root_1", "param_10"], "value_10")
+        insert_nested_key(cfg, ["param_root_0", "param_02"], "value_02")
 
         # --- hide: start ---
-        print(cfg)
+        print(f"cfg: {cfg}")
         # --- hide: stop ---
 
     Args:
@@ -106,7 +106,7 @@ def remove_nested_key(cfg: Dict[str, Dict], keys: Sequence[str]) -> None:
     """
     Remove a key, value pair of a nested ``Mapping``.
 
-    .. exec-code::
+    .. exec_code::
 
         # --- hide: start ---
         from randfig.utils import remove_nested_key
@@ -116,7 +116,7 @@ def remove_nested_key(cfg: Dict[str, Dict], keys: Sequence[str]) -> None:
         remove_nested_key(cfg, ["param_root_0", "param_01"])
 
         # --- hide: start ---
-        print(cfg)
+        print(f"cfg: {cfg}")
         # --- hide: stop ---
 
     Args:

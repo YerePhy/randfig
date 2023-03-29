@@ -7,7 +7,7 @@ __all__ = ["Compose"]
 
 class Compose:
     """
-    Apply configuration trnasforms sequentially.
+    Apply configuration transforms sequentially.
     """
 
     def __init__(self, transforms: Sequence[ConfigTransform]) -> None:

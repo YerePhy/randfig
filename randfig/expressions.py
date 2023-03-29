@@ -200,8 +200,8 @@ def product(cfg, a_key: str, b_key: str) -> Number:
     Computes ``cfg[a_key] * cfg[b_key]``.
 
     Args:
-        a_key:
-        b_key:
+        a_key: key whose value is one factor of the product.
+        b_key: key whose value is the other factor of the product.
 
     Returns:
         ``cfg[a_key] * cfg[b_key]``.
