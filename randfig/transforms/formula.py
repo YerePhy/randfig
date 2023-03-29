@@ -13,14 +13,15 @@ class Formula(ConfigTransform):
     .. exec_code::
 
         # --- hide: start ---
-        from randfig.formula import Formula
+        from randfig import Formula
         # --- hide: stop ---
 
         init_config = {"param_0": 1}
-        form = Formula(keys=["param_1"], formula: lambda cfg: 2 * cfg["param_0"])
+        form = Formula(keys=["param_1"], formula = lambda cfg: 2 * cfg["param_0"])
+        out = form(init_config)
 
         # --- hide: start ---
-        print(out)
+        print(f"out: {out}")
         # --- hide: stop ---
     """
 

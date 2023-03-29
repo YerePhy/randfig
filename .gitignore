@@ -135,3 +135,6 @@ dmypy.json
 
 # hydra outputs
 **/outputs/**
+
+# files
+scanner_randfigs
