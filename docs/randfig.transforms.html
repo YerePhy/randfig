@@ -1,0 +1,905 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>randfig.transforms package &#8212; RANDFIG 1.1.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'randfig.transforms';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="randfig package" href="randfig.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">RANDFIG 1.1.1 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="modules.html">
+                        randfig
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="modules.html">
+                        randfig
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="randfig.html">randfig package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">randfig.transforms package</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="modules.html" class="nav-link">randfig</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="randfig.html" class="nav-link">randfig package</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">randfig.transforms package</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="randfig-transforms-package">
+<h1>randfig.transforms package<a class="headerlink" href="#randfig-transforms-package" title="Permalink to this heading">#</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="module-randfig.transforms.compose">
+<span id="randfig-transforms-compose-module"></span><h2>randfig.transforms.compose module<a class="headerlink" href="#module-randfig.transforms.compose" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="randfig.transforms.compose.Compose">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">randfig.transforms.compose.</span></span><span class="sig-name descname"><span class="pre">Compose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transforms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#randfig.transforms.config_transform.ConfigTransform" title="randfig.transforms.config_transform.ConfigTransform"><span class="pre">ConfigTransform</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#randfig.transforms.compose.Compose" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Apply configuration transforms sequentially.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="randfig.transforms.compose.Compose.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transforms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#randfig.transforms.config_transform.ConfigTransform" title="randfig.transforms.config_transform.ConfigTransform"><span class="pre">ConfigTransform</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#randfig.transforms.compose.Compose.__init__" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>transforms</strong> – a sequence of configuration
+tranforms that implement the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">randfig.config_transform.ConfigTransform</span></code>
+interface.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-randfig.transforms.config_transform">
+<span id="randfig-transforms-config-transform-module"></span><h2>randfig.transforms.config_transform module<a class="headerlink" href="#module-randfig.transforms.config_transform" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="randfig.transforms.config_transform.ConfigTransform">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">randfig.transforms.config_transform.</span></span><span class="sig-name descname"><span class="pre">ConfigTransform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#randfig.transforms.config_transform.ConfigTransform" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Interface for tranformations that
+act on <code class="docutils literal notranslate"><span class="pre">typing.Mapping</span></code>-like configurations.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="randfig.transforms.config_transform.ConfigTransform.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#randfig.transforms.config_transform.ConfigTransform.__init__" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>keys</strong> – concrete implementations of this
+interface will act on the keys
+given by this argument, leaving
+the rest of keys untransformed.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – if <code class="docutils literal notranslate"><span class="pre">keys</span></code> is nor <code class="docutils literal notranslate"><span class="pre">None</span></code> nor a <code class="docutils literal notranslate"><span class="pre">Sequence</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="randfig.transforms.config_transform.ConfigTransform.keys">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">keys</span></span><a class="headerlink" href="#randfig.transforms.config_transform.ConfigTransform.keys" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-randfig.transforms.formula">
+<span id="randfig-transforms-formula-module"></span><h2>randfig.transforms.formula module<a class="headerlink" href="#module-randfig.transforms.formula" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="randfig.transforms.formula.Formula">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">randfig.transforms.formula.</span></span><span class="sig-name descname"><span class="pre">Formula</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Mapping</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#randfig.transforms.formula.Formula" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#randfig.transforms.config_transform.ConfigTransform" title="randfig.transforms.config_transform.ConfigTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigTransform</span></code></a></p>
+<p>Compute a configuration value from a <code class="docutils literal notranslate"><span class="pre">Callable[[Mapping],</span> <span class="pre">Any]</span></code>.
+For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">init_config</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;param_0&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+<span class="n">form</span> <span class="o">=</span> <span class="n">Formula</span><span class="p">(</span><span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;param_1&quot;</span><span class="p">],</span> <span class="n">formula</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">cfg</span><span class="p">:</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">cfg</span><span class="p">[</span><span class="s2">&quot;param_0&quot;</span><span class="p">])</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">form</span><span class="p">(</span><span class="n">init_config</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>out: {&#39;param_0&#39;: 1, &#39;param_1&#39;: 2}
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="randfig.transforms.formula.Formula.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Mapping</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#randfig.transforms.formula.Formula.__init__" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>formula</strong> – a callable for computing <code class="docutils literal notranslate"><span class="pre">keys</span></code>, the signature must be the
+one specified in the type hints, that is <code class="docutils literal notranslate"><span class="pre">typing.Callable[[Mapping],</span> <span class="pre">Any]</span></code>.
+In order to follow that signature, <code class="docutils literal notranslate"><span class="pre">functools.partial</span></code> might help
+in most cases.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-randfig.transforms.insert">
+<span id="randfig-transforms-insert-module"></span><h2>randfig.transforms.insert module<a class="headerlink" href="#module-randfig.transforms.insert" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="randfig.transforms.insert.Insert">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">randfig.transforms.insert.</span></span><span class="sig-name descname"><span class="pre">Insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#randfig.transforms.insert.Insert" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#randfig.transforms.config_transform.ConfigTransform" title="randfig.transforms.config_transform.ConfigTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigTransform</span></code></a></p>
+<p>Insert key, value pairs in the input configuration.
+This class relies in <a class="reference internal" href="randfig.html#randfig.utils.insert_nested_key" title="randfig.utils.insert_nested_key"><code class="xref py py-func docutils literal notranslate"><span class="pre">randfig.utils.insert_nested_key()</span></code></a>,
+see its documentation for detailed info.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">init_config</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;param_0&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;param_1&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+<span class="n">inserted</span> <span class="o">=</span> <span class="n">Insert</span><span class="p">(</span><span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;param_2&quot;</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>inserted: &lt;randfig.transforms.insert.Insert object at 0x7ff76f42ebb0&gt;
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="randfig.transforms.insert.Insert.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#randfig.transforms.insert.Insert.__init__" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>keys</strong> – sequence of nested keys.</p></li>
+<li><p><strong>value</strong> – value that will be inserted.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-randfig.transforms.nest">
+<span id="randfig-transforms-nest-module"></span><h2>randfig.transforms.nest module<a class="headerlink" href="#module-randfig.transforms.nest" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="randfig.transforms.nest.Nest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">randfig.transforms.nest.</span></span><span class="sig-name descname"><span class="pre">Nest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#randfig.transforms.nest.Nest" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#randfig.transforms.config_transform.ConfigTransform" title="randfig.transforms.config_transform.ConfigTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigTransform</span></code></a></p>
+<p>Nest a set of key, pair values
+under a root value as a <code class="docutils literal notranslate"><span class="pre">dict</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">init_config</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;param_0&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;param_1&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;param_2&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="n">nest</span> <span class="o">=</span> <span class="n">Nest</span><span class="p">(</span><span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;param_0&quot;</span><span class="p">,</span> <span class="s2">&quot;param_1&quot;</span><span class="p">],</span> <span class="n">root</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="p">)</span>
+<span class="n">nested</span> <span class="o">=</span> <span class="n">nest</span><span class="p">(</span><span class="n">init_config</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nested: {&#39;param_2&#39;: 3, &#39;root&#39;: {&#39;param_0&#39;: 1, &#39;param_1&#39;: 2}}
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="randfig.transforms.nest.Nest.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#randfig.transforms.nest.Nest.__init__" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>root</strong> – the key, value paris specified by
+<code class="docutils literal notranslate"><span class="pre">keys</span></code> are nested under a key which
+name will be <code class="docutils literal notranslate"><span class="pre">root</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-randfig.transforms.remove">
+<span id="randfig-transforms-remove-module"></span><h2>randfig.transforms.remove module<a class="headerlink" href="#module-randfig.transforms.remove" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="randfig.transforms.remove.Remove">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">randfig.transforms.remove.</span></span><span class="sig-name descname"><span class="pre">Remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#randfig.transforms.remove.Remove" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#randfig.transforms.config_transform.ConfigTransform" title="randfig.transforms.config_transform.ConfigTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigTransform</span></code></a></p>
+<p>If they exist, remove key, value pairs specified by
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">self.keys</span></code>. This class relies on
+<code class="xref py py-func docutils literal notranslate"><span class="pre">randfig.remove_nested_key()</span></code>, see its
+documentation for detailed info.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">init_config</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;param_0&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;param_1&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;param_2&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+<span class="n">remove</span> <span class="o">=</span> <span class="n">Remove</span><span class="p">(</span><span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;param_2&quot;</span><span class="p">])</span>
+<span class="n">removed</span> <span class="o">=</span> <span class="n">remove</span><span class="p">(</span><span class="n">init_config</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>removed: {&#39;param_0&#39;: 0, &#39;param_1&#39;: 1}
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="module-randfig.transforms.save">
+<span id="randfig-transforms-save-module"></span><h2>randfig.transforms.save module<a class="headerlink" href="#module-randfig.transforms.save" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="randfig.transforms.save.Save">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">randfig.transforms.save.</span></span><span class="sig-name descname"><span class="pre">Save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#randfig.transforms.save.Save" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#randfig.transforms.config_transform.ConfigTransform" title="randfig.transforms.config_transform.ConfigTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigTransform</span></code></a></p>
+<p>Saves the value of a sequence of nested keys
+as a YAML file, such value must be a <code class="docutils literal notranslate"><span class="pre">typing.Mapping</span></code>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="randfig.transforms.save.Save.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#randfig.transforms.save.Save.__init__" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>save_dir</strong> – path to dir where the configuration will be saved as YAML.</p></li>
+<li><p><strong>filename</strong> – name of the file where the configuration will be saved. It
+must have <code class="docutils literal notranslate"><span class="pre">&quot;.yaml&quot;</span></code> extension.</p></li>
+<li><p><strong>sequence</strong> – <code class="docutils literal notranslate"><span class="pre">ruamel.yaml</span></code> parameter for <code class="docutils literal notranslate"><span class="pre">YAML.indend</span></code> method (avoid bad indents in lists).</p></li>
+<li><p><strong>offset</strong> – <code class="docutils literal notranslate"><span class="pre">ruamel.yaml</span></code> parameter for <code class="docutils literal notranslate"><span class="pre">YAML.indend</span></code> method (avoid bad indents in lists).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – <code class="docutils literal notranslate"><span class="pre">filename</span></code> has a path structure,
+    that is it has parents: <code class="docutils literal notranslate"><span class="pre">configs.yaml</span></code> is valid, <code class="docutils literal notranslate"><span class="pre">configs/config.yaml</span></code>
+    is not valid.</p></li>
+<li><p><strong>ValueError</strong> – if <code class="docutils literal notranslate"><span class="pre">filename</span></code> has an extension different from <code class="docutils literal notranslate"><span class="pre">&quot;.yaml&quot;</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="randfig.transforms.save.Save.filename">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">filename</span></span><a class="headerlink" href="#randfig.transforms.save.Save.filename" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="randfig.transforms.save.Save.save_dir">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">save_dir</span></span><a class="headerlink" href="#randfig.transforms.save.Save.save_dir" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-randfig.transforms">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-randfig.transforms" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="randfig.transforms.Compose">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">randfig.transforms.</span></span><span class="sig-name descname"><span class="pre">Compose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transforms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#randfig.transforms.config_transform.ConfigTransform" title="randfig.transforms.config_transform.ConfigTransform"><span class="pre">ConfigTransform</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#randfig.transforms.Compose" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Apply configuration transforms sequentially.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="randfig.transforms.Compose.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transforms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#randfig.transforms.config_transform.ConfigTransform" title="randfig.transforms.config_transform.ConfigTransform"><span class="pre">ConfigTransform</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#randfig.transforms.Compose.__init__" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>transforms</strong> – a sequence of configuration
+tranforms that implement the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">randfig.config_transform.ConfigTransform</span></code>
+interface.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="randfig.transforms.ConfigTransform">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">randfig.transforms.</span></span><span class="sig-name descname"><span class="pre">ConfigTransform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#randfig.transforms.ConfigTransform" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Interface for tranformations that
+act on <code class="docutils literal notranslate"><span class="pre">typing.Mapping</span></code>-like configurations.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="randfig.transforms.ConfigTransform.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#randfig.transforms.ConfigTransform.__init__" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>keys</strong> – concrete implementations of this
+interface will act on the keys
+given by this argument, leaving
+the rest of keys untransformed.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – if <code class="docutils literal notranslate"><span class="pre">keys</span></code> is nor <code class="docutils literal notranslate"><span class="pre">None</span></code> nor a <code class="docutils literal notranslate"><span class="pre">Sequence</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="randfig.transforms.ConfigTransform.keys">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">keys</span></span><a class="headerlink" href="#randfig.transforms.ConfigTransform.keys" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="randfig.transforms.Formula">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">randfig.transforms.</span></span><span class="sig-name descname"><span class="pre">Formula</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Mapping</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#randfig.transforms.Formula" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#randfig.transforms.config_transform.ConfigTransform" title="randfig.transforms.config_transform.ConfigTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigTransform</span></code></a></p>
+<p>Compute a configuration value from a <code class="docutils literal notranslate"><span class="pre">Callable[[Mapping],</span> <span class="pre">Any]</span></code>.
+For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">init_config</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;param_0&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+<span class="n">form</span> <span class="o">=</span> <span class="n">Formula</span><span class="p">(</span><span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;param_1&quot;</span><span class="p">],</span> <span class="n">formula</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">cfg</span><span class="p">:</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">cfg</span><span class="p">[</span><span class="s2">&quot;param_0&quot;</span><span class="p">])</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">form</span><span class="p">(</span><span class="n">init_config</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>out: {&#39;param_0&#39;: 1, &#39;param_1&#39;: 2}
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="randfig.transforms.Formula.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Mapping</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#randfig.transforms.Formula.__init__" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>formula</strong> – a callable for computing <code class="docutils literal notranslate"><span class="pre">keys</span></code>, the signature must be the
+one specified in the type hints, that is <code class="docutils literal notranslate"><span class="pre">typing.Callable[[Mapping],</span> <span class="pre">Any]</span></code>.
+In order to follow that signature, <code class="docutils literal notranslate"><span class="pre">functools.partial</span></code> might help
+in most cases.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="randfig.transforms.Insert">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">randfig.transforms.</span></span><span class="sig-name descname"><span class="pre">Insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#randfig.transforms.Insert" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#randfig.transforms.config_transform.ConfigTransform" title="randfig.transforms.config_transform.ConfigTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigTransform</span></code></a></p>
+<p>Insert key, value pairs in the input configuration.
+This class relies in <a class="reference internal" href="randfig.html#randfig.utils.insert_nested_key" title="randfig.utils.insert_nested_key"><code class="xref py py-func docutils literal notranslate"><span class="pre">randfig.utils.insert_nested_key()</span></code></a>,
+see its documentation for detailed info.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">init_config</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;param_0&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;param_1&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+<span class="n">inserted</span> <span class="o">=</span> <span class="n">Insert</span><span class="p">(</span><span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;param_2&quot;</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>inserted: &lt;randfig.transforms.insert.Insert object at 0x7ff71a96fbb0&gt;
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="randfig.transforms.Insert.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#randfig.transforms.Insert.__init__" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>keys</strong> – sequence of nested keys.</p></li>
+<li><p><strong>value</strong> – value that will be inserted.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="randfig.transforms.Nest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">randfig.transforms.</span></span><span class="sig-name descname"><span class="pre">Nest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#randfig.transforms.Nest" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#randfig.transforms.config_transform.ConfigTransform" title="randfig.transforms.config_transform.ConfigTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigTransform</span></code></a></p>
+<p>Nest a set of key, pair values
+under a root value as a <code class="docutils literal notranslate"><span class="pre">dict</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">init_config</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;param_0&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;param_1&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;param_2&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="n">nest</span> <span class="o">=</span> <span class="n">Nest</span><span class="p">(</span><span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;param_0&quot;</span><span class="p">,</span> <span class="s2">&quot;param_1&quot;</span><span class="p">],</span> <span class="n">root</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="p">)</span>
+<span class="n">nested</span> <span class="o">=</span> <span class="n">nest</span><span class="p">(</span><span class="n">init_config</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nested: {&#39;param_2&#39;: 3, &#39;root&#39;: {&#39;param_0&#39;: 1, &#39;param_1&#39;: 2}}
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="randfig.transforms.Nest.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#randfig.transforms.Nest.__init__" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>root</strong> – the key, value paris specified by
+<code class="docutils literal notranslate"><span class="pre">keys</span></code> are nested under a key which
+name will be <code class="docutils literal notranslate"><span class="pre">root</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="randfig.transforms.Remove">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">randfig.transforms.</span></span><span class="sig-name descname"><span class="pre">Remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#randfig.transforms.Remove" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#randfig.transforms.config_transform.ConfigTransform" title="randfig.transforms.config_transform.ConfigTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigTransform</span></code></a></p>
+<p>If they exist, remove key, value pairs specified by
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">self.keys</span></code>. This class relies on
+<code class="xref py py-func docutils literal notranslate"><span class="pre">randfig.remove_nested_key()</span></code>, see its
+documentation for detailed info.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">init_config</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;param_0&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;param_1&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;param_2&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+<span class="n">remove</span> <span class="o">=</span> <span class="n">Remove</span><span class="p">(</span><span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;param_2&quot;</span><span class="p">])</span>
+<span class="n">removed</span> <span class="o">=</span> <span class="n">remove</span><span class="p">(</span><span class="n">init_config</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>removed: {&#39;param_0&#39;: 0, &#39;param_1&#39;: 1}
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="randfig.transforms.Save">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">randfig.transforms.</span></span><span class="sig-name descname"><span class="pre">Save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#randfig.transforms.Save" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#randfig.transforms.config_transform.ConfigTransform" title="randfig.transforms.config_transform.ConfigTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigTransform</span></code></a></p>
+<p>Saves the value of a sequence of nested keys
+as a YAML file, such value must be a <code class="docutils literal notranslate"><span class="pre">typing.Mapping</span></code>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="randfig.transforms.Save.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#randfig.transforms.Save.__init__" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>save_dir</strong> – path to dir where the configuration will be saved as YAML.</p></li>
+<li><p><strong>filename</strong> – name of the file where the configuration will be saved. It
+must have <code class="docutils literal notranslate"><span class="pre">&quot;.yaml&quot;</span></code> extension.</p></li>
+<li><p><strong>sequence</strong> – <code class="docutils literal notranslate"><span class="pre">ruamel.yaml</span></code> parameter for <code class="docutils literal notranslate"><span class="pre">YAML.indend</span></code> method (avoid bad indents in lists).</p></li>
+<li><p><strong>offset</strong> – <code class="docutils literal notranslate"><span class="pre">ruamel.yaml</span></code> parameter for <code class="docutils literal notranslate"><span class="pre">YAML.indend</span></code> method (avoid bad indents in lists).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – <code class="docutils literal notranslate"><span class="pre">filename</span></code> has a path structure,
+    that is it has parents: <code class="docutils literal notranslate"><span class="pre">configs.yaml</span></code> is valid, <code class="docutils literal notranslate"><span class="pre">configs/config.yaml</span></code>
+    is not valid.</p></li>
+<li><p><strong>ValueError</strong> – if <code class="docutils literal notranslate"><span class="pre">filename</span></code> has an extension different from <code class="docutils literal notranslate"><span class="pre">&quot;.yaml&quot;</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="randfig.transforms.Save.filename">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">filename</span></span><a class="headerlink" href="#randfig.transforms.Save.filename" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="randfig.transforms.Save.save_dir">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">save_dir</span></span><a class="headerlink" href="#randfig.transforms.Save.save_dir" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="randfig.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">randfig package</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-randfig.transforms.compose">randfig.transforms.compose module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.compose.Compose"><code class="docutils literal notranslate"><span class="pre">Compose</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.compose.Compose.__init__"><code class="docutils literal notranslate"><span class="pre">Compose.__init__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-randfig.transforms.config_transform">randfig.transforms.config_transform module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.config_transform.ConfigTransform"><code class="docutils literal notranslate"><span class="pre">ConfigTransform</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.config_transform.ConfigTransform.__init__"><code class="docutils literal notranslate"><span class="pre">ConfigTransform.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.config_transform.ConfigTransform.keys"><code class="docutils literal notranslate"><span class="pre">ConfigTransform.keys</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-randfig.transforms.formula">randfig.transforms.formula module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.formula.Formula"><code class="docutils literal notranslate"><span class="pre">Formula</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.formula.Formula.__init__"><code class="docutils literal notranslate"><span class="pre">Formula.__init__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-randfig.transforms.insert">randfig.transforms.insert module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.insert.Insert"><code class="docutils literal notranslate"><span class="pre">Insert</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.insert.Insert.__init__"><code class="docutils literal notranslate"><span class="pre">Insert.__init__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-randfig.transforms.nest">randfig.transforms.nest module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.nest.Nest"><code class="docutils literal notranslate"><span class="pre">Nest</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.nest.Nest.__init__"><code class="docutils literal notranslate"><span class="pre">Nest.__init__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-randfig.transforms.remove">randfig.transforms.remove module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.remove.Remove"><code class="docutils literal notranslate"><span class="pre">Remove</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-randfig.transforms.save">randfig.transforms.save module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.save.Save"><code class="docutils literal notranslate"><span class="pre">Save</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.save.Save.__init__"><code class="docutils literal notranslate"><span class="pre">Save.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.save.Save.filename"><code class="docutils literal notranslate"><span class="pre">Save.filename</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.save.Save.save_dir"><code class="docutils literal notranslate"><span class="pre">Save.save_dir</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-randfig.transforms">Module contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.Compose"><code class="docutils literal notranslate"><span class="pre">Compose</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.Compose.__init__"><code class="docutils literal notranslate"><span class="pre">Compose.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.ConfigTransform"><code class="docutils literal notranslate"><span class="pre">ConfigTransform</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.ConfigTransform.__init__"><code class="docutils literal notranslate"><span class="pre">ConfigTransform.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.ConfigTransform.keys"><code class="docutils literal notranslate"><span class="pre">ConfigTransform.keys</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.Formula"><code class="docutils literal notranslate"><span class="pre">Formula</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.Formula.__init__"><code class="docutils literal notranslate"><span class="pre">Formula.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.Insert"><code class="docutils literal notranslate"><span class="pre">Insert</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.Insert.__init__"><code class="docutils literal notranslate"><span class="pre">Insert.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.Nest"><code class="docutils literal notranslate"><span class="pre">Nest</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.Nest.__init__"><code class="docutils literal notranslate"><span class="pre">Nest.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.Remove"><code class="docutils literal notranslate"><span class="pre">Remove</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.Save"><code class="docutils literal notranslate"><span class="pre">Save</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.Save.__init__"><code class="docutils literal notranslate"><span class="pre">Save.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.Save.filename"><code class="docutils literal notranslate"><span class="pre">Save.filename</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.transforms.Save.save_dir"><code class="docutils literal notranslate"><span class="pre">Save.save_dir</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="_sources/randfig.transforms.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner"></div>
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2023, Jeremiah Poveda Martínez.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://sphinx-doc.org/">Sphinx</a> 6.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

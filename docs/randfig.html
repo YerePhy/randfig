@@ -1,0 +1,1192 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>randfig package &#8212; RANDFIG 1.1.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'randfig';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="randfig.transforms package" href="randfig.transforms.html" />
+    <link rel="prev" title="randfig" href="modules.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">RANDFIG 1.1.1 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="modules.html">
+                        randfig
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="modules.html">
+                        randfig
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">randfig package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="randfig.transforms.html">randfig.transforms package</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="modules.html" class="nav-link">randfig</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">randfig package</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="randfig-package">
+<h1>randfig package<a class="headerlink" href="#randfig-package" title="Permalink to this heading">#</a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="randfig.transforms.html">randfig.transforms package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="randfig.transforms.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="randfig.transforms.html#module-randfig.transforms.compose">randfig.transforms.compose module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.compose.Compose"><code class="docutils literal notranslate"><span class="pre">Compose</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.compose.Compose.__init__"><code class="docutils literal notranslate"><span class="pre">Compose.__init__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="randfig.transforms.html#module-randfig.transforms.config_transform">randfig.transforms.config_transform module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.config_transform.ConfigTransform"><code class="docutils literal notranslate"><span class="pre">ConfigTransform</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.config_transform.ConfigTransform.__init__"><code class="docutils literal notranslate"><span class="pre">ConfigTransform.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.config_transform.ConfigTransform.keys"><code class="docutils literal notranslate"><span class="pre">ConfigTransform.keys</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="randfig.transforms.html#module-randfig.transforms.formula">randfig.transforms.formula module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.formula.Formula"><code class="docutils literal notranslate"><span class="pre">Formula</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.formula.Formula.__init__"><code class="docutils literal notranslate"><span class="pre">Formula.__init__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="randfig.transforms.html#module-randfig.transforms.insert">randfig.transforms.insert module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.insert.Insert"><code class="docutils literal notranslate"><span class="pre">Insert</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.insert.Insert.__init__"><code class="docutils literal notranslate"><span class="pre">Insert.__init__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="randfig.transforms.html#module-randfig.transforms.nest">randfig.transforms.nest module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.nest.Nest"><code class="docutils literal notranslate"><span class="pre">Nest</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.nest.Nest.__init__"><code class="docutils literal notranslate"><span class="pre">Nest.__init__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="randfig.transforms.html#module-randfig.transforms.remove">randfig.transforms.remove module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.remove.Remove"><code class="docutils literal notranslate"><span class="pre">Remove</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="randfig.transforms.html#module-randfig.transforms.save">randfig.transforms.save module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.save.Save"><code class="docutils literal notranslate"><span class="pre">Save</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.save.Save.__init__"><code class="docutils literal notranslate"><span class="pre">Save.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.save.Save.filename"><code class="docutils literal notranslate"><span class="pre">Save.filename</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.save.Save.save_dir"><code class="docutils literal notranslate"><span class="pre">Save.save_dir</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="randfig.transforms.html#module-randfig.transforms">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.Compose"><code class="docutils literal notranslate"><span class="pre">Compose</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.Compose.__init__"><code class="docutils literal notranslate"><span class="pre">Compose.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.ConfigTransform"><code class="docutils literal notranslate"><span class="pre">ConfigTransform</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.ConfigTransform.__init__"><code class="docutils literal notranslate"><span class="pre">ConfigTransform.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.ConfigTransform.keys"><code class="docutils literal notranslate"><span class="pre">ConfigTransform.keys</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.Formula"><code class="docutils literal notranslate"><span class="pre">Formula</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.Formula.__init__"><code class="docutils literal notranslate"><span class="pre">Formula.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.Insert"><code class="docutils literal notranslate"><span class="pre">Insert</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.Insert.__init__"><code class="docutils literal notranslate"><span class="pre">Insert.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.Nest"><code class="docutils literal notranslate"><span class="pre">Nest</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.Nest.__init__"><code class="docutils literal notranslate"><span class="pre">Nest.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.Remove"><code class="docutils literal notranslate"><span class="pre">Remove</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.Save"><code class="docutils literal notranslate"><span class="pre">Save</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.Save.__init__"><code class="docutils literal notranslate"><span class="pre">Save.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.Save.filename"><code class="docutils literal notranslate"><span class="pre">Save.filename</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="randfig.transforms.html#randfig.transforms.Save.save_dir"><code class="docutils literal notranslate"><span class="pre">Save.save_dir</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="module-randfig.decorators">
+<span id="randfig-decorators-module"></span><h2>randfig.decorators module<a class="headerlink" href="#module-randfig.decorators" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="randfig.decorators.accept_cfg">
+<span class="sig-prename descclassname"><span class="pre">randfig.decorators.</span></span><span class="sig-name descname"><span class="pre">accept_cfg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Mapping</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#randfig.decorators.accept_cfg" title="Permalink to this definition">#</a></dt>
+<dd><p>This decorator is intended to use it with functions like
+<code class="docutils literal notranslate"><span class="pre">random.randint</span></code> or <code class="docutils literal notranslate"><span class="pre">random.uniform</span></code> in facebook-hydra configurations.
+It aims to return a callable that accepts a <code class="docutils literal notranslate"><span class="pre">dict</span></code>-like configuration
+and return a value. This way functions like <code class="docutils literal notranslate"><span class="pre">random.randint</span></code> or <code class="docutils literal notranslate"><span class="pre">random.uniform</span></code>
+can be instantiated to pass them to the <code class="docutils literal notranslate"><span class="pre">formula</span></code> kwarg of <code class="xref py py-class docutils literal notranslate"><span class="pre">randfig.formula.Formula</span></code>.
+For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">_target_</span><span class="p">:</span> <span class="n">randfig</span><span class="o">.</span><span class="n">Formula</span>
+<span class="n">keys</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;scanner_radius&quot;</span><span class="p">]</span>
+<span class="n">formula</span><span class="p">:</span>
+  <span class="n">_target_</span><span class="p">:</span> <span class="n">randfig</span><span class="o">.</span><span class="n">decorators</span><span class="o">.</span><span class="n">accept_cfg</span>
+  <span class="n">_args_</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">_target_</span><span class="p">:</span> <span class="n">hydra</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_method</span>
+      <span class="n">path</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span>
+    <span class="o">-</span> <span class="mi">20</span>
+    <span class="o">-</span> <span class="mi">30</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn</strong> – a callable.</p></li>
+<li><p><strong>args</strong> – arguments of that callable.</p></li>
+<li><p><strong>kwargs</strong> – kwargs of that callable.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A callable that accepts just a <code class="docutils literal notranslate"><span class="pre">dict</span></code>-like configuration
+and returns <code class="docutils literal notranslate"><span class="pre">fn(*args,</span> <span class="pre">**kwargs)</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-randfig.expressions">
+<span id="randfig-expressions-module"></span><h2>randfig.expressions module<a class="headerlink" href="#module-randfig.expressions" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="randfig.expressions.division">
+<span class="sig-prename descclassname"><span class="pre">randfig.expressions.</span></span><span class="sig-name descname"><span class="pre">division</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">den_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">integer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Number</span></span></span><a class="headerlink" href="#randfig.expressions.division" title="Permalink to this definition">#</a></dt>
+<dd><p>Computes division or integer division between
+the specified keys of <code class="docutils literal notranslate"><span class="pre">cfg</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cfg</strong> – <code class="docutils literal notranslate"><span class="pre">dict</span></code>-like configuration.</p></li>
+<li><p><strong>num_key</strong> – numerator key.</p></li>
+<li><p><strong>den_key</strong> – denominator key.</p></li>
+<li><p><strong>integer</strong> – whether to perform integer division or not.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Division between the values of specified keys.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – if <code class="docutils literal notranslate"><span class="pre">cfg[num_key]</span></code> or <code class="docutils literal notranslate"><span class="pre">cfg[den_key]</span></code> are not <code class="docutils literal notranslate"><span class="pre">Number</span></code> instances.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="randfig.expressions.division_by_num">
+<span class="sig-prename descclassname"><span class="pre">randfig.expressions.</span></span><span class="sig-name descname"><span class="pre">division_by_num</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">integer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Number</span></span></span><a class="headerlink" href="#randfig.expressions.division_by_num" title="Permalink to this definition">#</a></dt>
+<dd><p>Computes division or integer division between <code class="docutils literal notranslate"><span class="pre">cfg[n_key]</span></code> and <code class="docutils literal notranslate"><span class="pre">num</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cfg</strong> – <code class="docutils literal notranslate"><span class="pre">dict</span></code>-like configuration.</p></li>
+<li><p><strong>n_key</strong> – key whose value is the number to be devided.</p></li>
+<li><p><strong>num</strong> – divisor.</p></li>
+<li><p><strong>integer</strong> – whether to perform integer division or not.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Division between <code class="docutils literal notranslate"><span class="pre">cfg[n_key]</span></code> and <code class="docutils literal notranslate"><span class="pre">num</span></code>.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – if <code class="docutils literal notranslate"><span class="pre">cfg[n_key]</span></code> or <code class="docutils literal notranslate"><span class="pre">num</span></code> are not <code class="docutils literal notranslate"><span class="pre">Number</span></code> instances.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="randfig.expressions.get_regular_polygon_apothem">
+<span class="sig-prename descclassname"><span class="pre">randfig.expressions.</span></span><span class="sig-name descname"><span class="pre">get_regular_polygon_apothem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">side_len_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_sides_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Number</span></span></span><a class="headerlink" href="#randfig.expressions.get_regular_polygon_apothem" title="Permalink to this definition">#</a></dt>
+<dd><p>Computes the apothem of a regular polygon
+given its number and length of sides.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cfg</strong> – <code class="docutils literal notranslate"><span class="pre">dict</span></code>-like config.</p></li>
+<li><p><strong>side_len_key</strong> – key whose value is the length of the polygon’s side.</p></li>
+<li><p><strong>n_sides_key</strong> – key whose value is the number of sides.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The apothem of the regular polygon</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – when <code class="docutils literal notranslate"><span class="pre">cfg[side_len_key]</span></code> is not a <code class="docutils literal notranslate"><span class="pre">Number</span></code> instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="randfig.expressions.get_regular_polygon_sides">
+<span class="sig-prename descclassname"><span class="pre">randfig.expressions.</span></span><span class="sig-name descname"><span class="pre">get_regular_polygon_sides</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">side_len_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apothem_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#randfig.expressions.get_regular_polygon_sides" title="Permalink to this definition">#</a></dt>
+<dd><p>Computes the sides of a regular polygon
+given side length and apothem.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cfg</strong> – <code class="docutils literal notranslate"><span class="pre">dict</span></code>-like config.</p></li>
+<li><p><strong>side_len_key</strong> – key whose value is the length of the polygon’s side.</p></li>
+<li><p><strong>apothem_key</strong> – key whose value is the length of the polygon’s apothem.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The number of sides of the regular polygon.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – if <code class="docutils literal notranslate"><span class="pre">cfg[side_len_key]</span></code> or <code class="docutils literal notranslate"><span class="pre">cfg[apothem_key]</span></code> are not <code class="docutils literal notranslate"><span class="pre">Number</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="randfig.expressions.max_threshold_from_resolution">
+<span class="sig-prename descclassname"><span class="pre">randfig.expressions.</span></span><span class="sig-name descname"><span class="pre">max_threshold_from_resolution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_percentage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigmas</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Number</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jitter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Number</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Number</span></span></span><a class="headerlink" href="#randfig.expressions.max_threshold_from_resolution" title="Permalink to this definition">#</a></dt>
+<dd><p>Computes an upper threshold (<code class="docutils literal notranslate"><span class="pre">upper_threshold</span></code>) assuming a gaussian distibution:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FWHM_TO_STD</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mf">2.355</span>
+<span class="n">lower_threshold</span> <span class="o">=</span> <span class="n">peak</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">sigmas</span> <span class="o">*</span> <span class="n">FWHM_TO_STD</span> <span class="o">*</span> <span class="n">resolution</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cfg</strong> – <code class="docutils literal notranslate"><span class="pre">dict</span></code>-like config having a resolution as a value.</p></li>
+<li><p><strong>resolution_key</strong> – key whose value is the gaussian resolution (FWHM).</p></li>
+<li><p><strong>peak</strong> – peak of the resolution curve.</p></li>
+<li><p><strong>sigmas</strong> – how many sigmas from the peak will be the upper threshold.</p></li>
+<li><p><strong>jitter</strong> – a uniform jitter with <a class="reference internal" href="#randfig.utils.add_uniform_jitter" title="randfig.utils.add_uniform_jitter"><code class="xref py py-func docutils literal notranslate"><span class="pre">randfig.utils.add_uniform_jitter()</span></code></a>.
+The value added is sampled from an uniform distribution with
+<code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">-jitter</span> <span class="pre">*</span> <span class="pre">peak</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">jitter</span> <span class="pre">*</span> <span class="pre">peak</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Upper threshold.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – if <code class="docutils literal notranslate"><span class="pre">is_percentage</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code> but <code class="docutils literal notranslate"><span class="pre">resolution</span> <span class="pre">&gt;</span> <span class="pre">1</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="randfig.expressions.min_threshold_from_resolution">
+<span class="sig-prename descclassname"><span class="pre">randfig.expressions.</span></span><span class="sig-name descname"><span class="pre">min_threshold_from_resolution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_percentage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigmas</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Number</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jitter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Number</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Number</span></span></span><a class="headerlink" href="#randfig.expressions.min_threshold_from_resolution" title="Permalink to this definition">#</a></dt>
+<dd><p>Computes a lower threshold (<code class="docutils literal notranslate"><span class="pre">lower_threshold</span></code>) assuming a gaussian distibution:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FWHM_TO_STD</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mf">2.355</span>
+<span class="n">lower_threshold</span> <span class="o">=</span> <span class="n">peak</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">sigmas</span> <span class="o">*</span> <span class="n">FWHM_TO_STD</span> <span class="o">*</span> <span class="n">resolution</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cfg</strong> – <code class="docutils literal notranslate"><span class="pre">dict</span></code>-like config having a resolution as a value.</p></li>
+<li><p><strong>resolution_key</strong> – key whose value is the gaussian resolution (FWHM).</p></li>
+<li><p><strong>peak</strong> – peak of the resolution curve.</p></li>
+<li><p><strong>sigmas</strong> – how many sigmas from the peak will be the lower threshold.</p></li>
+<li><p><strong>jitter</strong> – a uniform jitter with <a class="reference internal" href="#randfig.utils.add_uniform_jitter" title="randfig.utils.add_uniform_jitter"><code class="xref py py-func docutils literal notranslate"><span class="pre">randfig.utils.add_uniform_jitter()</span></code></a>.
+The value added is sampled from an uniform distribution with
+<code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">-jitter</span> <span class="pre">*</span> <span class="pre">peak</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">jitter</span> <span class="pre">*</span> <span class="pre">peak</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Lower threshold.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – if <code class="docutils literal notranslate"><span class="pre">is_percentage</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code> but <code class="docutils literal notranslate"><span class="pre">resolution</span> <span class="pre">&gt;</span> <span class="pre">1</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="randfig.expressions.pop">
+<span class="sig-prename descclassname"><span class="pre">randfig.expressions.</span></span><span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#randfig.expressions.pop" title="Permalink to this definition">#</a></dt>
+<dd><p>Pops an element of <code class="docutils literal notranslate"><span class="pre">cfg[key]</span></code> if
+its value is a <code class="docutils literal notranslate"><span class="pre">List</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cfg</strong> – <code class="docutils literal notranslate"><span class="pre">dict</span></code>-like congifuration.</p></li>
+<li><p><strong>key</strong> – a key of <code class="docutils literal notranslate"><span class="pre">cfg</span></code> which value is a <code class="docutils literal notranslate"><span class="pre">List</span></code></p></li>
+<li><p><strong>element</strong> – which element to pop from the list.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The poped element.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – if the value associeted to
+    <code class="docutils literal notranslate"><span class="pre">cfg[key]</span></code> is not a <code class="docutils literal notranslate"><span class="pre">List</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="randfig.expressions.product">
+<span class="sig-prename descclassname"><span class="pre">randfig.expressions.</span></span><span class="sig-name descname"><span class="pre">product</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Number</span></span></span><a class="headerlink" href="#randfig.expressions.product" title="Permalink to this definition">#</a></dt>
+<dd><p>Computes <code class="docutils literal notranslate"><span class="pre">cfg[a_key]</span> <span class="pre">*</span> <span class="pre">cfg[b_key]</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a_key</strong> – key whose value is one factor of the product.</p></li>
+<li><p><strong>b_key</strong> – key whose value is the other factor of the product.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">cfg[a_key]</span> <span class="pre">*</span> <span class="pre">cfg[b_key]</span></code>.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – if <code class="docutils literal notranslate"><span class="pre">cfg[a_key]</span></code> or <code class="docutils literal notranslate"><span class="pre">cfg[b_key]</span></code> are not <code class="docutils literal notranslate"><span class="pre">Number</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="randfig.expressions.product_by_num">
+<span class="sig-prename descclassname"><span class="pre">randfig.expressions.</span></span><span class="sig-name descname"><span class="pre">product_by_num</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Number</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Number</span></span></span><a class="headerlink" href="#randfig.expressions.product_by_num" title="Permalink to this definition">#</a></dt>
+<dd><p>Computes product between <code class="docutils literal notranslate"><span class="pre">cfg[n_key]</span></code> and <code class="docutils literal notranslate"><span class="pre">num</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cfg</strong> – <code class="docutils literal notranslate"><span class="pre">dict</span></code>-like configuration.</p></li>
+<li><p><strong>n_key</strong> – key whose value is the number to be multiplied.</p></li>
+<li><p><strong>num</strong> – multiplier.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Multiplication between <code class="docutils literal notranslate"><span class="pre">cfg[n_key]</span></code> and <code class="docutils literal notranslate"><span class="pre">num</span></code>.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – if <code class="docutils literal notranslate"><span class="pre">cfg[n_key]</span></code> or <code class="docutils literal notranslate"><span class="pre">num</span></code> are not <code class="docutils literal notranslate"><span class="pre">Number</span></code> instances.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="randfig.expressions.round_to_closest_even">
+<span class="sig-prename descclassname"><span class="pre">randfig.expressions.</span></span><span class="sig-name descname"><span class="pre">round_to_closest_even</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#randfig.expressions.round_to_closest_even" title="Permalink to this definition">#</a></dt>
+<dd><p>Rounds <code class="docutils literal notranslate"><span class="pre">cfg[key_n]</span></code> value to the closest even number.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cfg</strong> – <code class="docutils literal notranslate"><span class="pre">dict</span></code>-like config.</p></li>
+<li><p><strong>key_n</strong> – key whose value is a number to round up to the closest even.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The closest even to <code class="docutils literal notranslate"><span class="pre">cfg{key_n]</span></code>.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – when <code class="docutils literal notranslate"><span class="pre">cfg{key_n]</span></code> is not a <code class="docutils literal notranslate"><span class="pre">Number</span></code> instance.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="randfig.expressions.rounding">
+<span class="sig-prename descclassname"><span class="pre">randfig.expressions.</span></span><span class="sig-name descname"><span class="pre">rounding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decimals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#randfig.expressions.rounding" title="Permalink to this definition">#</a></dt>
+<dd><p>Round the value of <code class="docutils literal notranslate"><span class="pre">cfg[key]</span></code> if
+its value is a <code class="docutils literal notranslate"><span class="pre">Number</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cfg</strong> – <code class="docutils literal notranslate"><span class="pre">dict</span></code>-like congifuration.</p></li>
+<li><p><strong>key</strong> – a key of <code class="docutils literal notranslate"><span class="pre">cfg</span></code> which value is a <code class="docutils literal notranslate"><span class="pre">Number</span></code></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The rounded value.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – if the value associeted to
+    <code class="docutils literal notranslate"><span class="pre">cfg[key]</span></code> is not a <code class="docutils literal notranslate"><span class="pre">Number</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-randfig.utils">
+<span id="randfig-utils-module"></span><h2>randfig.utils module<a class="headerlink" href="#module-randfig.utils" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="randfig.utils.add_uniform_jitter">
+<span class="sig-prename descclassname"><span class="pre">randfig.utils.</span></span><span class="sig-name descname"><span class="pre">add_uniform_jitter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Number</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Number</span></span></span><a class="headerlink" href="#randfig.utils.add_uniform_jitter" title="Permalink to this definition">#</a></dt>
+<dd><p>Ass jitter to <code class="docutils literal notranslate"><span class="pre">value</span></code> based on a fraction, <code class="docutils literal notranslate"><span class="pre">p</span></code> of <code class="docutils literal notranslate"><span class="pre">reference</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span> <span class="o">+</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="n">p</span> <span class="o">*</span> <span class="n">reference</span><span class="p">,</span> <span class="n">p</span> <span class="o">*</span> <span class="n">reference</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> – jitted will be added to this argument.</p></li>
+<li><p><strong>p</strong> – fraction of <code class="docutils literal notranslate"><span class="pre">reference</span></code> that will be added to <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p></li>
+<li><p><strong>reference</strong> – the jitter added to <code class="docutils literal notranslate"><span class="pre">value</span></code> is sampled from an uniform
+distribution with range <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">-p</span> <span class="pre">*</span> <span class="pre">reference</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">p</span> <span class="pre">*</span> <span class="pre">reference</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Jittered value.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – if any of the arguments is not a <code class="docutils literal notranslate"><span class="pre">Number</span></code> instance.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="randfig.utils.get_nested_value">
+<span class="sig-prename descclassname"><span class="pre">randfig.utils.</span></span><span class="sig-name descname"><span class="pre">get_nested_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mapping</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#randfig.utils.get_nested_value" title="Permalink to this definition">#</a></dt>
+<dd><p>Get the value of nested keys.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nested</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;param_root&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;param_nested&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;param_1&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;param_2&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}}}</span>
+<span class="n">nested_val</span> <span class="o">=</span> <span class="n">get_nested_value</span><span class="p">(</span><span class="n">nested</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;param_root&quot;</span><span class="p">,</span> <span class="s2">&quot;param_nested&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nested_val: {&#39;param_1&#39;: 1, &#39;param_2&#39;: 2}
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mapping</strong> – an object following <code class="docutils literal notranslate"><span class="pre">typing.Mapping</span></code> interface.</p></li>
+<li><p><strong>map_list</strong> – a sequence of nested keys.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The value of the last key specified by <code class="docutils literal notranslate"><span class="pre">map_list</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="randfig.utils.insert_nested_key">
+<span class="sig-prename descclassname"><span class="pre">randfig.utils.</span></span><span class="sig-name descname"><span class="pre">insert_nested_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#randfig.utils.insert_nested_key" title="Permalink to this definition">#</a></dt>
+<dd><p>Insert a key, value pair or update a value
+of a nested <code class="docutils literal notranslate"><span class="pre">Mapping</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;param_root_0&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;param_00&quot;</span><span class="p">:</span> <span class="s2">&quot;value_00&quot;</span><span class="p">,</span> <span class="s2">&quot;param_01&quot;</span><span class="p">:</span> <span class="s2">&quot;value_01&quot;</span><span class="p">}}</span>
+<span class="n">insert_nested_key</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;param_root_0&quot;</span><span class="p">,</span> <span class="s2">&quot;param_02&quot;</span><span class="p">],</span> <span class="s2">&quot;value_02&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cfg: {&#39;param_root_0&#39;: {&#39;param_00&#39;: &#39;value_00&#39;, &#39;param_01&#39;: &#39;value_01&#39;, &#39;param_02&#39;: &#39;value_02&#39;}}
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cfg</strong> – nested <code class="docutils literal notranslate"><span class="pre">Mapping</span></code>.</p></li>
+<li><p><strong>keys</strong> – sequence of nested keys where <code class="docutils literal notranslate"><span class="pre">value</span></code> will be inserted.</p></li>
+<li><p><strong>value</strong> – value to insert.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – if one of the values of the nested keys is not a <code class="docutils literal notranslate"><span class="pre">Mapping</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="randfig.utils.mapping_to_defaultdict">
+<span class="sig-prename descclassname"><span class="pre">randfig.utils.</span></span><span class="sig-name descname"><span class="pre">mapping_to_defaultdict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mapping</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DefaultDict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#randfig.utils.mapping_to_defaultdict" title="Permalink to this definition">#</a></dt>
+<dd><p>Convert a nested <code class="docutils literal notranslate"><span class="pre">typing.Mapping</span></code> to
+a nested <code class="docutils literal notranslate"><span class="pre">typing.DefaultDict</span></code> recursively.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mapping</strong> – nested <code class="docutils literal notranslate"><span class="pre">typing.Mapping</span></code>.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Nested <code class="docutils literal notranslate"><span class="pre">typing.DefaultDict</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="randfig.utils.mapping_to_dict">
+<span class="sig-prename descclassname"><span class="pre">randfig.utils.</span></span><span class="sig-name descname"><span class="pre">mapping_to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mapping</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#randfig.utils.mapping_to_dict" title="Permalink to this definition">#</a></dt>
+<dd><p>Convert a nested <code class="docutils literal notranslate"><span class="pre">typing.Mapping</span></code> to
+a nested <code class="docutils literal notranslate"><span class="pre">typing.Dict</span></code> recursively.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mapping</strong> – nested <code class="docutils literal notranslate"><span class="pre">typing.Mapping</span></code>.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Nested <code class="docutils literal notranslate"><span class="pre">typing.Dict</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="randfig.utils.remove_nested_key">
+<span class="sig-prename descclassname"><span class="pre">randfig.utils.</span></span><span class="sig-name descname"><span class="pre">remove_nested_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#randfig.utils.remove_nested_key" title="Permalink to this definition">#</a></dt>
+<dd><p>Remove a key, value pair of a nested <code class="docutils literal notranslate"><span class="pre">Mapping</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;param_root_0&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;param_00&quot;</span><span class="p">:</span> <span class="s2">&quot;value_00&quot;</span><span class="p">,</span> <span class="s2">&quot;param_01&quot;</span><span class="p">:</span> <span class="s2">&quot;value_01&quot;</span><span class="p">}}</span>
+<span class="n">remove_nested_key</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;param_root_0&quot;</span><span class="p">,</span> <span class="s2">&quot;param_01&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cfg: {&#39;param_root_0&#39;: {&#39;param_00&#39;: &#39;value_00&#39;}}
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cfg</strong> – nested <code class="docutils literal notranslate"><span class="pre">Mapping</span></code>.</p></li>
+<li><p><strong>keys</strong> – sequence of nested keys, the last one will be removed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – if one of the values of the nested keys is not a <code class="docutils literal notranslate"><span class="pre">Mapping</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-randfig">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-randfig" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="randfig.Compose">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">randfig.</span></span><span class="sig-name descname"><span class="pre">Compose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transforms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="randfig.transforms.html#randfig.transforms.config_transform.ConfigTransform" title="randfig.transforms.config_transform.ConfigTransform"><span class="pre">ConfigTransform</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#randfig.Compose" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Apply configuration transforms sequentially.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="randfig.Compose.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transforms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="randfig.transforms.html#randfig.transforms.config_transform.ConfigTransform" title="randfig.transforms.config_transform.ConfigTransform"><span class="pre">ConfigTransform</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#randfig.Compose.__init__" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>transforms</strong> – a sequence of configuration
+tranforms that implement the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">randfig.config_transform.ConfigTransform</span></code>
+interface.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="randfig.ConfigTransform">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">randfig.</span></span><span class="sig-name descname"><span class="pre">ConfigTransform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#randfig.ConfigTransform" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Interface for tranformations that
+act on <code class="docutils literal notranslate"><span class="pre">typing.Mapping</span></code>-like configurations.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="randfig.ConfigTransform.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#randfig.ConfigTransform.__init__" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>keys</strong> – concrete implementations of this
+interface will act on the keys
+given by this argument, leaving
+the rest of keys untransformed.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – if <code class="docutils literal notranslate"><span class="pre">keys</span></code> is nor <code class="docutils literal notranslate"><span class="pre">None</span></code> nor a <code class="docutils literal notranslate"><span class="pre">Sequence</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="randfig.ConfigTransform.keys">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">keys</span></span><a class="headerlink" href="#randfig.ConfigTransform.keys" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="randfig.Formula">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">randfig.</span></span><span class="sig-name descname"><span class="pre">Formula</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Mapping</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#randfig.Formula" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="randfig.transforms.html#randfig.transforms.config_transform.ConfigTransform" title="randfig.transforms.config_transform.ConfigTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigTransform</span></code></a></p>
+<p>Compute a configuration value from a <code class="docutils literal notranslate"><span class="pre">Callable[[Mapping],</span> <span class="pre">Any]</span></code>.
+For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">init_config</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;param_0&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+<span class="n">form</span> <span class="o">=</span> <span class="n">Formula</span><span class="p">(</span><span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;param_1&quot;</span><span class="p">],</span> <span class="n">formula</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">cfg</span><span class="p">:</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">cfg</span><span class="p">[</span><span class="s2">&quot;param_0&quot;</span><span class="p">])</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">form</span><span class="p">(</span><span class="n">init_config</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>out: {&#39;param_0&#39;: 1, &#39;param_1&#39;: 2}
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="randfig.Formula.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Mapping</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#randfig.Formula.__init__" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>formula</strong> – a callable for computing <code class="docutils literal notranslate"><span class="pre">keys</span></code>, the signature must be the
+one specified in the type hints, that is <code class="docutils literal notranslate"><span class="pre">typing.Callable[[Mapping],</span> <span class="pre">Any]</span></code>.
+In order to follow that signature, <code class="docutils literal notranslate"><span class="pre">functools.partial</span></code> might help
+in most cases.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="randfig.Insert">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">randfig.</span></span><span class="sig-name descname"><span class="pre">Insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#randfig.Insert" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="randfig.transforms.html#randfig.transforms.config_transform.ConfigTransform" title="randfig.transforms.config_transform.ConfigTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigTransform</span></code></a></p>
+<p>Insert key, value pairs in the input configuration.
+This class relies in <a class="reference internal" href="#randfig.utils.insert_nested_key" title="randfig.utils.insert_nested_key"><code class="xref py py-func docutils literal notranslate"><span class="pre">randfig.utils.insert_nested_key()</span></code></a>,
+see its documentation for detailed info.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">init_config</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;param_0&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;param_1&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+<span class="n">inserted</span> <span class="o">=</span> <span class="n">Insert</span><span class="p">(</span><span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;param_2&quot;</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>inserted: &lt;randfig.transforms.insert.Insert object at 0x7f4a13104bb0&gt;
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="randfig.Insert.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#randfig.Insert.__init__" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>keys</strong> – sequence of nested keys.</p></li>
+<li><p><strong>value</strong> – value that will be inserted.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="randfig.Nest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">randfig.</span></span><span class="sig-name descname"><span class="pre">Nest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#randfig.Nest" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="randfig.transforms.html#randfig.transforms.config_transform.ConfigTransform" title="randfig.transforms.config_transform.ConfigTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigTransform</span></code></a></p>
+<p>Nest a set of key, pair values
+under a root value as a <code class="docutils literal notranslate"><span class="pre">dict</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">init_config</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;param_0&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;param_1&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;param_2&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="n">nest</span> <span class="o">=</span> <span class="n">Nest</span><span class="p">(</span><span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;param_0&quot;</span><span class="p">,</span> <span class="s2">&quot;param_1&quot;</span><span class="p">],</span> <span class="n">root</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="p">)</span>
+<span class="n">nested</span> <span class="o">=</span> <span class="n">nest</span><span class="p">(</span><span class="n">init_config</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nested: {&#39;param_2&#39;: 3, &#39;root&#39;: {&#39;param_0&#39;: 1, &#39;param_1&#39;: 2}}
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="randfig.Nest.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#randfig.Nest.__init__" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>root</strong> – the key, value paris specified by
+<code class="docutils literal notranslate"><span class="pre">keys</span></code> are nested under a key which
+name will be <code class="docutils literal notranslate"><span class="pre">root</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="randfig.Remove">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">randfig.</span></span><span class="sig-name descname"><span class="pre">Remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#randfig.Remove" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="randfig.transforms.html#randfig.transforms.config_transform.ConfigTransform" title="randfig.transforms.config_transform.ConfigTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigTransform</span></code></a></p>
+<p>If they exist, remove key, value pairs specified by
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">self.keys</span></code>. This class relies on
+<code class="xref py py-func docutils literal notranslate"><span class="pre">randfig.remove_nested_key()</span></code>, see its
+documentation for detailed info.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">init_config</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;param_0&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;param_1&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;param_2&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+<span class="n">remove</span> <span class="o">=</span> <span class="n">Remove</span><span class="p">(</span><span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;param_2&quot;</span><span class="p">])</span>
+<span class="n">removed</span> <span class="o">=</span> <span class="n">remove</span><span class="p">(</span><span class="n">init_config</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>removed: {&#39;param_0&#39;: 0, &#39;param_1&#39;: 1}
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="randfig.Save">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">randfig.</span></span><span class="sig-name descname"><span class="pre">Save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#randfig.Save" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="randfig.transforms.html#randfig.transforms.config_transform.ConfigTransform" title="randfig.transforms.config_transform.ConfigTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigTransform</span></code></a></p>
+<p>Saves the value of a sequence of nested keys
+as a YAML file, such value must be a <code class="docutils literal notranslate"><span class="pre">typing.Mapping</span></code>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="randfig.Save.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#randfig.Save.__init__" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>save_dir</strong> – path to dir where the configuration will be saved as YAML.</p></li>
+<li><p><strong>filename</strong> – name of the file where the configuration will be saved. It
+must have <code class="docutils literal notranslate"><span class="pre">&quot;.yaml&quot;</span></code> extension.</p></li>
+<li><p><strong>sequence</strong> – <code class="docutils literal notranslate"><span class="pre">ruamel.yaml</span></code> parameter for <code class="docutils literal notranslate"><span class="pre">YAML.indend</span></code> method (avoid bad indents in lists).</p></li>
+<li><p><strong>offset</strong> – <code class="docutils literal notranslate"><span class="pre">ruamel.yaml</span></code> parameter for <code class="docutils literal notranslate"><span class="pre">YAML.indend</span></code> method (avoid bad indents in lists).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – <code class="docutils literal notranslate"><span class="pre">filename</span></code> has a path structure,
+    that is it has parents: <code class="docutils literal notranslate"><span class="pre">configs.yaml</span></code> is valid, <code class="docutils literal notranslate"><span class="pre">configs/config.yaml</span></code>
+    is not valid.</p></li>
+<li><p><strong>ValueError</strong> – if <code class="docutils literal notranslate"><span class="pre">filename</span></code> has an extension different from <code class="docutils literal notranslate"><span class="pre">&quot;.yaml&quot;</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="randfig.Save.filename">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">filename</span></span><a class="headerlink" href="#randfig.Save.filename" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="randfig.Save.save_dir">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">save_dir</span></span><a class="headerlink" href="#randfig.Save.save_dir" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="modules.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">randfig</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="randfig.transforms.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">randfig.transforms package</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subpackages">Subpackages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-randfig.decorators">randfig.decorators module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.decorators.accept_cfg"><code class="docutils literal notranslate"><span class="pre">accept_cfg()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-randfig.expressions">randfig.expressions module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.expressions.division"><code class="docutils literal notranslate"><span class="pre">division()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.expressions.division_by_num"><code class="docutils literal notranslate"><span class="pre">division_by_num()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.expressions.get_regular_polygon_apothem"><code class="docutils literal notranslate"><span class="pre">get_regular_polygon_apothem()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.expressions.get_regular_polygon_sides"><code class="docutils literal notranslate"><span class="pre">get_regular_polygon_sides()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.expressions.max_threshold_from_resolution"><code class="docutils literal notranslate"><span class="pre">max_threshold_from_resolution()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.expressions.min_threshold_from_resolution"><code class="docutils literal notranslate"><span class="pre">min_threshold_from_resolution()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.expressions.pop"><code class="docutils literal notranslate"><span class="pre">pop()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.expressions.product"><code class="docutils literal notranslate"><span class="pre">product()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.expressions.product_by_num"><code class="docutils literal notranslate"><span class="pre">product_by_num()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.expressions.round_to_closest_even"><code class="docutils literal notranslate"><span class="pre">round_to_closest_even()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.expressions.rounding"><code class="docutils literal notranslate"><span class="pre">rounding()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-randfig.utils">randfig.utils module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.utils.add_uniform_jitter"><code class="docutils literal notranslate"><span class="pre">add_uniform_jitter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.utils.get_nested_value"><code class="docutils literal notranslate"><span class="pre">get_nested_value()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.utils.insert_nested_key"><code class="docutils literal notranslate"><span class="pre">insert_nested_key()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.utils.mapping_to_defaultdict"><code class="docutils literal notranslate"><span class="pre">mapping_to_defaultdict()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.utils.mapping_to_dict"><code class="docutils literal notranslate"><span class="pre">mapping_to_dict()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.utils.remove_nested_key"><code class="docutils literal notranslate"><span class="pre">remove_nested_key()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-randfig">Module contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.Compose"><code class="docutils literal notranslate"><span class="pre">Compose</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.Compose.__init__"><code class="docutils literal notranslate"><span class="pre">Compose.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.ConfigTransform"><code class="docutils literal notranslate"><span class="pre">ConfigTransform</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.ConfigTransform.__init__"><code class="docutils literal notranslate"><span class="pre">ConfigTransform.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.ConfigTransform.keys"><code class="docutils literal notranslate"><span class="pre">ConfigTransform.keys</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.Formula"><code class="docutils literal notranslate"><span class="pre">Formula</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.Formula.__init__"><code class="docutils literal notranslate"><span class="pre">Formula.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.Insert"><code class="docutils literal notranslate"><span class="pre">Insert</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.Insert.__init__"><code class="docutils literal notranslate"><span class="pre">Insert.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.Nest"><code class="docutils literal notranslate"><span class="pre">Nest</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.Nest.__init__"><code class="docutils literal notranslate"><span class="pre">Nest.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.Remove"><code class="docutils literal notranslate"><span class="pre">Remove</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.Save"><code class="docutils literal notranslate"><span class="pre">Save</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.Save.__init__"><code class="docutils literal notranslate"><span class="pre">Save.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.Save.filename"><code class="docutils literal notranslate"><span class="pre">Save.filename</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#randfig.Save.save_dir"><code class="docutils literal notranslate"><span class="pre">Save.save_dir</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="_sources/randfig.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner"></div>
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2023, Jeremiah Poveda Martínez.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://sphinx-doc.org/">Sphinx</a> 6.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
