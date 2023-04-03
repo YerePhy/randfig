@@ -1,7 +1,7 @@
 import math
 from numbers import Number
 from typing import Mapping, Any, List, Optional
-from randfig.utils import add_uniform_jitter
+from randfig.utils import add_uniform_jitter, search_divisor
 
 
 def pop(cfg: Mapping, key: str, element: int = 0) -> Any:
@@ -317,3 +317,19 @@ def get_regular_polygon_apothem(cfg: Mapping, side_len_key: str,
 
     return side_len / (2 * math.tan(math.pi / n_sides))
 
+
+def get_divisor(cfg: Mapping, key: str, search_divisor_kwargs: Mapping[str, Any]) -> int:
+    """
+    Search a divisor of ``cfg[key]`` based on :py:func:`randifg.utils.search_divisor`.
+
+    Args:
+        cfg: a ``dict``-like config.
+        key: key whose value is an ``int`` or can be casted to ``int``.
+        search_divisor_kwargs: kwargs for :py:func:`randifg.utils.search_divisor`,
+            unless ``n`` which is ``cfg[key]``.
+
+    Returns:
+        A divisor of ``cfg[key]``.
+    """
+    n = int(cfg[key])
+    return search_divisor(n, **search_divisor_kwargs)

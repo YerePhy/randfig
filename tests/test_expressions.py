@@ -319,3 +319,35 @@ def test_get_regular_polygon_apothem(cfg, expected):
 def test_get_regular_polygon_sides_value_error(cfg):
     with pytest.raises(TypeError):
         expressions.get_regular_polygon_sides(cfg, "side_len", "apothem")
+
+
+@pytest.mark.parametrize('search_divisor_kwargs,expected', [
+    [
+        {
+            "divisors": [8, 31, 105],
+            "not_found_strategy": "min",
+            "threshold": 1
+        },
+        105
+    ],
+    [
+        {
+            "divisors": [8, 31, 106],
+            "not_found_strategy": "min",
+            "threshold": 10
+        },
+        7
+    ],
+    [
+        {
+            "divisors": [8, 31, 106],
+            "not_found_strategy": "max",
+            "threshold": 6
+        },
+        7
+    ]
+])
+def test_get_divisor(search_divisor_kwargs, expected):
+    cfg = {"n": 210}
+    out = expressions.get_divisor(cfg, "n", search_divisor_kwargs)
+    assert out == expected
