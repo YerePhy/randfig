@@ -155,6 +155,23 @@ compose:
         num: 2
         integer: true
         _partial_: true
+    - _target_: randfig.Formula
+      keys: ["num_aa_bins"]
+      formula:
+        _target_: randfig.expressions.division_by_num
+        n_key: "n_transaxial_detectors"
+        num: 2
+        integer: true
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["numberOfSubsets"]
+      formula:
+        _target_: randfig.expressions.get_divisor
+        key: "num_aa_bins"
+        search_divisor_kwargs:
+          threshold: 27
+          not_found_strategy: min
+        _partial_: true
     # Roundings
     - _target_: randfig.Formula
       keys: ["axial_fov"]
