@@ -1,7 +1,11 @@
 import math
 from numbers import Number
 from typing import Mapping, Any, List, Optional
-from randfig.utils import add_uniform_jitter, search_divisor
+from randfig.utils import (
+    add_uniform_jitter,
+    search_divisor,
+    add_uniform_jitter
+)
 
 
 def pop(cfg: Mapping, key: str, element: int = 0) -> Any:
@@ -333,3 +337,26 @@ def get_divisor(cfg: Mapping, key: str, search_divisor_kwargs: Mapping[str, Any]
     """
     n = int(cfg[key])
     return search_divisor(n, **search_divisor_kwargs)
+
+
+def get_jittered_value(cfg: Mapping, key: str, p: Number) -> Number:
+    """
+    Stub.
+
+    Args:
+        cfg: a ``dict``-like config.
+        key: key whose value is a ``Number`` to add jitter to.
+        p: the amount of jitter to add, see :py:func:`randfig.utils.add_uniform_jitter`.
+
+    Returns:
+        Jittered value (``cfg[key] + uniform jitter``).
+
+    Raises:
+        TypeError: if ``cfg[key]`` is not a ``Number``.
+    """
+    value = cfg[key]
+
+    if not isinstance(value, Number):
+        raise TypeError(f"Expected a Number but got {value} which is {type(value)}")
+
+    return add_uniform_jitter(value, value, p)
