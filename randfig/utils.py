@@ -92,12 +92,13 @@ def insert_nested_key(cfg: Dict[str, Dict], keys: Sequence[str], value: Any) -> 
         TypeError: if one of the values of the nested keys is not a ``Mapping``.
     """
     if isinstance(cfg, Mapping):
-        key = keys.pop(0)
+        first_key = keys[0]
+        remaining_keys = keys[1:]
 
-        if not keys:
-            cfg[key] = value
+        if not remaining_keys:
+            cfg[first_key] = value
         else:
-            insert_nested_key(cfg[key], keys, value)
+            insert_nested_key(cfg[first_key], remaining_keys, value)
     else:
         raise TypeError(f"Got: {cfg} for one of the nested values, which is {type(cfg)}, expected a``Mapping``.")
 
@@ -127,12 +128,13 @@ def remove_nested_key(cfg: Dict[str, Dict], keys: Sequence[str]) -> None:
         TypeError: if one of the values of the nested keys is not a ``Mapping``.
     """
     if isinstance(cfg, Mapping):
-        key = keys.pop(0)
+        first_key = keys[0]
+        remaining_keys = keys[1:]
 
-        if not keys:
-            cfg.pop(key)
+        if not remaining_keys:
+            cfg.pop(first_key)
         else:
-            remove_nested_key(cfg[key], keys)
+            remove_nested_key(cfg[first_key], remaining_keys)
     else:
         raise TypeError(f"Got: {cfg} for one of the nested values, which is {type(cfg)}, expected a``Mapping``.")
 
