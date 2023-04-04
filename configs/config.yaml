@@ -1,24 +1,8 @@
-# Random parameters:
-#   - "axial_fov": uniform (corrected after the computation of "num_rings").
-#   - "scanner_radius": uniform.
-#   - "z_crystal_size": uniform.
-#   - "transaxial_crystal_size": uniform.
-#   - "crystal_thickness": uniform.
-#   - "energy_resolution": uniform.
-#   - "simset_material": weighted choice.
-# Dependent parameters:
-#   - "num_rings": computed from "axial_fov" and "z_crystal_size".
-#   - "min_energy_window": computed from "energy_resolution"
-#     (assuming it is gaussian).
-#   - "max_energy_window": computed from "energy_resolution"
-#     (assuming it is gaussian).
-#   - "num_aa_views": computed from "transaxial_crystal_size" and
-#     "scanner_radius", first the number of detectors per ring is computed
-#     assuming that rings are regular polygons.
 n_random_configs: 1000
 compose:
   _target_: randfig.Compose
   transforms:
+    # scanner_radius: sampled from uniform distribution
     - _target_: randfig.Formula
       keys: ["scanner_radius"]
       formula:
@@ -28,6 +12,7 @@ compose:
             path: random.uniform
           - ${stats:scanner_radius_min}
           - ${stats:scanner_radius_max}
+    # axial_fov: sampled from uniform distribution
     - _target_: randfig.Formula
       keys: ["axial_fov"]
       formula:
@@ -37,6 +22,7 @@ compose:
             path: random.uniform
           - ${stats:axial_fov_min}
           - ${stats:axial_fov_max}
+    # simset_material: weighted sampling between the available materials
     - _target_: randfig.Formula
       keys: ["simset_material"]
       formula:
@@ -56,6 +42,7 @@ compose:
         key: "simset_material"
         element: 0
         _partial_: true
+    # z_crystal_size: sampled from uniform distribution
     - _target_: randfig.Formula
       keys: ["z_crystal_size"]
       formula:
@@ -65,6 +52,7 @@ compose:
             path: random.uniform
           - ${stats:z_crystal_size_min}
           - ${stats:z_crystal_size_max}
+    # transaxial_crystal_size: sampled from uniform distribution
     - _target_: randfig.Formula
       keys: ["transaxial_crystal_size"]
       formula:
@@ -74,6 +62,7 @@ compose:
             path: random.uniform
           - ${stats:transaxial_crystal_size_min}
           - ${stats:transaxial_crystal_size_max}
+    # crystal_thickness: sampled from uniform distribution
     - _target_: randfig.Formula
       keys: ["crystal_thickness"]
       formula:
@@ -83,6 +72,7 @@ compose:
             path: random.uniform
           - ${stats:crystal_thickness_min}
           - ${stats:crystal_thickness_max}
+    # num_rings: computed with integer divsion axial_fov // z_crystal_size
     - _target_: randfig.Formula
       keys: ["num_rings"]
       formula:
@@ -91,6 +81,7 @@ compose:
         den_key: "z_crystal_size"
         integer: true
         _partial_: true
+    # axial_fov have to be corrected to be exactly z_crystal_size * num_rings
     - _target_: randfig.Formula
       keys: ["axial_fov"]
       formula:
@@ -98,6 +89,32 @@ compose:
         a_key: "z_crystal_size"
         b_key: "num_rings"
         _partial_: true
+    # Compute the number of transaxial detectors
+    # according to scanner_radius and transaxial_crystal_size
+    - _target_: randfig.Formula
+      keys: ["n_transaxial_detectors"]
+      formula:
+        _target_: randfig.expressions.get_regular_polygon_sides
+        side_len_key: "transaxial_crystal_size"
+        apothem_key: "scanner_radius"
+        _partial_: true
+    # round the number of detectors to the closest even number
+    - _target_: randfig.Formula
+      keys: ["n_transaxial_detectors"]
+      formula:
+        _target_: randfig.expressions.round_to_closest_even
+        key_n: "n_transaxial_detectors"
+        _partial_: true
+    # correct scanner_radius so the (possible)
+    # extra detector is taken into account
+    - _target_: randfig.Formula
+      keys: ["scanner_radius"]
+      formula:
+        _target_: randfig.expressions.get_regular_polygon_apothem
+        side_len_key: "transaxial_crystal_size"
+        n_sides_key: "n_transaxial_detectors"
+        _partial_: true
+    # energy_resolution: sampled from uniform distribution
     - _target_: randfig.Formula
       keys: ["energy_resolution"]
       formula:
@@ -107,6 +124,7 @@ compose:
             path: random.uniform
           - ${stats:energy_resolution_min}
           - ${stats:energy_resolution_max}
+    # min_energy_window: computed from 511 - 2 * sigmas + uniform jitter
     - _target_: randfig.Formula
       keys: ["min_energy_window"]
       formula:
@@ -117,6 +135,7 @@ compose:
         sigmas: 2
         jitter: 0.015
         _partial_: true
+    # min_energy_window: computed from 511 + 2 * sigmas + uniform jitter
     - _target_: randfig.Formula
       keys: ["max_energy_window"]
       formula:
@@ -127,26 +146,7 @@ compose:
         sigmas: 2
         jitter: 0.015
         _partial_: true
-    - _target_: randfig.Formula
-      keys: ["n_transaxial_detectors"]
-      formula:
-        _target_: randfig.expressions.get_regular_polygon_sides
-        side_len_key: "transaxial_crystal_size"
-        apothem_key: "scanner_radius"
-        _partial_: true
-    - _target_: randfig.Formula
-      keys: ["n_transaxial_detectors"]
-      formula:
-        _target_: randfig.expressions.round_to_closest_even
-        key_n: "n_transaxial_detectors"
-        _partial_: true
-    - _target_: randfig.Formula
-      keys: ["scanner_radius"]
-      formula:
-        _target_: randfig.expressions.get_regular_polygon_apothem
-        side_len_key: "transaxial_crystal_size"
-        n_sides_key: "n_transaxial_detectors"
-        _partial_: true
+    # num_aa_bins: half of n_transaxial_detectors
     - _target_: randfig.Formula
       keys: ["num_aa_bins"]
       formula:
@@ -155,14 +155,7 @@ compose:
         num: 2
         integer: true
         _partial_: true
-    - _target_: randfig.Formula
-      keys: ["num_aa_bins"]
-      formula:
-        _target_: randfig.expressions.division_by_num
-        n_key: "n_transaxial_detectors"
-        num: 2
-        integer: true
-        _partial_: true
+    # numberOFSubsets: the bigger divisor of num_aa_bins smaller than threshold
     - _target_: randfig.Formula
       keys: ["numberOfSubsets"]
       formula:
@@ -172,6 +165,35 @@ compose:
           threshold: 27
           not_found_strategy: min
         _partial_: true
+    # Reconstruction parameters (STIR)
+    - _target_: randfig.Insert
+      keys: ["analytical_att_correction"]
+      value: 1
+    - _target_: randfig.Insert
+      keys: ["stir_recons_att_corr"]
+      value: 0
+    - _target_: randfig.Insert
+      keys: ["stir_randoms_corr_smoothing"]
+      value: 0
+    - _target_: randfig.Insert
+      keys: ["stir_scatt_corr_smoothing"]
+      value: 0
+    - _target_: randfig.Formula
+      keys: ["analytic_scatt_corr_factor"]
+      formula:
+        _target_: randfig.decorators.accept_cfg
+        _args_:
+          - _target_: hydra.utils.get_method
+            path: random.choice
+          - [0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45]
+    - _target_: randfig.Formula
+      keys: ["analytic_randoms_corr_factor"]
+      formula:
+        _target_: randfig.decorators.accept_cfg
+        _args_:
+          - _target_: hydra.utils.get_method
+            path: random.choice
+          - [0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45]
     # Roundings
     - _target_: randfig.Formula
       keys: ["axial_fov"]
