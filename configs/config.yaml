@@ -194,6 +194,29 @@ compose:
           - _target_: hydra.utils.get_method
             path: random.choice
           - [0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45]
+    # num_td_bins
+    - _target_: randfig.Formula
+      keys: ["effective_diameter"]
+      formula:
+        _target_: randfig.expressions.product_by_num
+        n_key: "scanner_radius"
+        num: 2
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["effective_diamater_corr_factor"]
+      formula:
+        _target_: randfig.decorators.accept_cfg
+        _args_:
+          - _target_: hydra.utils.get_method
+            path: random.choice
+          - [0.8, 0.81, 0.82, 0.83, 0.84, 0.85, 0.86, 0.87, 0.88]
+    - _target_: randfig.Formula
+      keys: ["effective_diameter"]
+      formula:
+        _target_: randfig.expressions.product
+        a_key: "effective_diameter"
+        b_key: "effective_diamater_corr_factor"
+        _partial_: true
     # Roundings
     - _target_: randfig.Formula
       keys: ["axial_fov"]
