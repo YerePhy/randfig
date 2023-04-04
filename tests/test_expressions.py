@@ -351,3 +351,19 @@ def test_get_divisor(search_divisor_kwargs, expected):
     cfg = {"n": 210}
     out = expressions.get_divisor(cfg, "n", search_divisor_kwargs)
     assert out == expected
+
+
+@pytest.mark.parametrize('cfg,p', [
+    [{"num": 1}, 0.05]
+])
+def test_add_jitter(cfg, p):
+    out = expressions.get_jittered_value(cfg, "num", p)
+    assert cfg["num"] * (1-p) <= out <= cfg["num"] * (1+p)
+
+
+@pytest.mark.parametrize('cfg', [
+    [{"num": []}]
+])
+def test_add_jitter_type_error(cfg):
+    with pytest.raises(TypeError):
+        expressions.get_jittered_value(cfg, "num", 0.1)

@@ -144,7 +144,7 @@ def remove_nested_key(cfg: Dict[str, Dict], keys: Sequence[str]) -> None:
 
 def add_uniform_jitter(value: Number, p: Number, reference: Number) -> Number:
     """
-    Ass jitter to ``value`` based on a fraction, ``p`` of ``reference``:
+    Add jitter to ``value`` based on a fraction, ``p`` of ``reference``:
 
     .. code-block::
 
