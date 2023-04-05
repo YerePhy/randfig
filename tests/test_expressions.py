@@ -367,3 +367,12 @@ def test_add_jitter(cfg, p):
 def test_add_jitter_type_error(cfg):
     with pytest.raises(TypeError):
         expressions.get_jittered_value(cfg, "num", 0.1)
+
+
+@pytest.mark.parametrize('cfg,mapping,expected', [
+    [{"key": "10"}, {"10": 0.01}, 0.01]
+])
+def test_pick_from_mapping(cfg, mapping, expected):
+    out = expressions.pick_from_mapping(
+        cfg=cfg, key="key", mapping=mapping)
+    assert out == expected

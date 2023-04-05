@@ -360,3 +360,18 @@ def get_jittered_value(cfg: Mapping, key: str, p: Number) -> Number:
         raise TypeError(f"Expected a Number but got {value} which is {type(value)}")
 
     return add_uniform_jitter(value, value, p)
+
+
+def pick_from_mapping(cfg: Mapping, key: str, mapping: Mapping[str, Any]) -> Any:
+    """
+    Returns ``mapping[cfg[key]]``.
+
+    Args:
+        cfg: a ``dict``-like config.
+        key: key whose value will hash ``mapping``.
+        mapping: the function returns ``mapping[cfg[key]]``.
+
+    Returns:
+        ``mapping[cfg[key]]``.
+    """
+    return mapping[cfg[key]]
