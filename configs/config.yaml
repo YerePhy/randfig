@@ -155,6 +155,45 @@ compose:
         num: 2
         integer: true
         _partial_: true
+    # num_td_bins: must cover the 80-90% of the scanner
+    # diameter and be arroun transaxial_crystal_size in size
+    - _target_: randfig.Formula
+      keys: ["effective_diameter"]
+      formula:
+        _target_: randfig.expressions.product_by_num
+        n_key: "scanner_radius"
+        num: 2
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["effective_diamater_corr_factor"]
+      formula:
+        _target_: randfig.decorators.accept_cfg
+        _args_:
+          - _target_: hydra.utils.get_method
+            path: random.choice
+          - [0.80, 0.81, 0.82, 0.83, 0.84, 0.85, 0.86, 0.87, 0.88]
+    - _target_: randfig.Formula
+      keys: ["effective_diameter"]
+      formula:
+        _target_: randfig.expressions.product
+        a_key: "effective_diameter"
+        b_key: "effective_diamater_corr_factor"
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["efective_transaxial_crystal_size"]
+      formula:
+        _target_: randfig.expressions.get_jittered_value
+        key: "transaxial_crystal_size"
+        p: 0.25
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["num_td_bins"]
+      formula:
+        _target_: randfig.expressions.division
+        num_key: "effective_diameter"
+        den_key: "transaxial_crystal_size"
+        integer: true
+        _partial_: true
     # numberOFSubsets: the bigger divisor of num_aa_bins smaller than threshold
     - _target_: randfig.Formula
       keys: ["numberOfSubsets"]
@@ -165,7 +204,6 @@ compose:
           threshold: 27
           not_found_strategy: min
         _partial_: true
-    # Reconstruction parameters (STIR)
     - _target_: randfig.Insert
       keys: ["analytical_att_correction"]
       value: 1
@@ -194,29 +232,6 @@ compose:
           - _target_: hydra.utils.get_method
             path: random.choice
           - [0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45]
-    # num_td_bins
-    - _target_: randfig.Formula
-      keys: ["effective_diameter"]
-      formula:
-        _target_: randfig.expressions.product_by_num
-        n_key: "scanner_radius"
-        num: 2
-        _partial_: true
-    - _target_: randfig.Formula
-      keys: ["effective_diamater_corr_factor"]
-      formula:
-        _target_: randfig.decorators.accept_cfg
-        _args_:
-          - _target_: hydra.utils.get_method
-            path: random.choice
-          - [0.8, 0.81, 0.82, 0.83, 0.84, 0.85, 0.86, 0.87, 0.88]
-    - _target_: randfig.Formula
-      keys: ["effective_diameter"]
-      formula:
-        _target_: randfig.expressions.product
-        a_key: "effective_diameter"
-        b_key: "effective_diamater_corr_factor"
-        _partial_: true
     # Roundings
     - _target_: randfig.Formula
       keys: ["axial_fov"]
@@ -274,3 +289,12 @@ compose:
         key: "max_energy_window"
         decimals: 1
         _partial_: true
+    # Removings
+    - _target_: randfig.Remove
+      keys: ["n_transaxial_detectors"]
+    - _target_: randfig.Remove
+      keys: ["effective_diameter"]
+    - _target_: randfig.Remove
+      keys: ["effective_diamater_corr_factor"]
+    - _target_: randfig.Remove
+      keys: ["efective_transaxial_crystal_size"]
