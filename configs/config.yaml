@@ -14,7 +14,24 @@ compose:
           - ${stats:BGO}
           - ${stats:LSO}
           - ${stats:LYSO}
-          - ${stats:GSO}
+    - _target_: randfig.Formula
+      keys: ["simset_material"]
+      formula:
+        _target_: randfig.expressions.pop
+        key: "simset_material"
+        element: 0
+        _partial_: true
+    # average_doi: pick average doi for the sampled material
+    - _target_: randfig.Formula
+      keys: ["average_doi"]
+      formula:
+        _target_: randfig.expressions.pick_from_mapping
+        key: "simset_material"
+        mapping:
+          "10": ${stats:doi_BGO}
+          "18": ${stats:doi_LSO}
+          "29": ${stats:doi_LYSO}
+        _partial_: true
     # scanner_radius: sampled from uniform distribution
     - _target_: randfig.Formula
       keys: ["scanner_radius"]
@@ -35,13 +52,6 @@ compose:
             path: random.uniform
           - ${stats:axial_fov_min}
           - ${stats:axial_fov_max}
-    - _target_: randfig.Formula
-      keys: ["simset_material"]
-      formula:
-        _target_: randfig.expressions.pop
-        key: "simset_material"
-        element: 0
-        _partial_: true
     # z_crystal_size: sampled from uniform distribution
     - _target_: randfig.Formula
       keys: ["z_crystal_size"]
@@ -204,6 +214,24 @@ compose:
           threshold: 27
           not_found_strategy: min
         _partial_: true
+    # numberOfIterations: between 0-10 times numberOfSubsets
+    - _target_: randfig.Formula
+      keys: ["mult_numberOfSubsets"]
+      formula:
+        _target_: randfig.decorators.accept_cfg
+        _args_:
+          - _target_: hydra.utils.get_method
+            path: random.randint
+          - 5
+          - 10
+    - _target_: randfig.Formula
+      keys: ["numberOfIterations"]
+      formula:
+        _target_: randfig.expressions.product
+        a_key: "mult_numberOfSubsets"
+        b_key: "numberOfSubsets"
+        _partial_: true
+    # STIR corrections
     - _target_: randfig.Insert
       keys: ["analytical_att_correction"]
       value: 1
@@ -298,3 +326,5 @@ compose:
       keys: ["effective_diamater_corr_factor"]
     - _target_: randfig.Remove
       keys: ["efective_transaxial_crystal_size"]
+    - _target_: randfig.Remove
+      keys: ["mult_numberOfSubsets"]
