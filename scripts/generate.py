@@ -35,10 +35,11 @@ def main(cfg: DictConfig):
     cfg = hydra.utils.instantiate(cfg, _recursive_=True)
 
     for n in range(cfg["n_random_configs"]):
-        out = cfg["compose"]({})
+        init_randfig = {"scanner_name": f"Scanner {n}"}
+        out = cfg["compose"](init_randfig)
         Save(
             save_dir=here().joinpath("scanner_randfigs"),
-            filename=f"config_{n}.yaml",
+            filename=f"scanner_{n}.yaml",
         )(out)
 
 
