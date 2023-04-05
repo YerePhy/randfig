@@ -2,6 +2,19 @@ n_random_configs: 1000
 compose:
   _target_: randfig.Compose
   transforms:
+    # simset_material: weighted sampling between the available materials
+    - _target_: randfig.Formula
+      keys: ["simset_material"]
+      formula:
+        _target_: randfig.decorators.accept_cfg
+        _args_:
+          - _target_: hydra.utils.get_method
+            path: random.choices
+        population:
+          - ${stats:BGO}
+          - ${stats:LSO}
+          - ${stats:LYSO}
+          - ${stats:GSO}
     # scanner_radius: sampled from uniform distribution
     - _target_: randfig.Formula
       keys: ["scanner_radius"]
@@ -22,19 +35,6 @@ compose:
             path: random.uniform
           - ${stats:axial_fov_min}
           - ${stats:axial_fov_max}
-    # simset_material: weighted sampling between the available materials
-    - _target_: randfig.Formula
-      keys: ["simset_material"]
-      formula:
-        _target_: randfig.decorators.accept_cfg
-        _args_:
-          - _target_: hydra.utils.get_method
-            path: random.choices
-        population:
-          - ${stats:BGO}
-          - ${stats:LSO}
-          - ${stats:LYSO}
-          - ${stats:GSO}
     - _target_: randfig.Formula
       keys: ["simset_material"]
       formula:
