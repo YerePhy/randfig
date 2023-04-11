@@ -232,14 +232,13 @@ compose:
         b_key: "numberOfSubsets"
         _partial_: true
     # max_segment: 70-100% * (num_rings - 1)
-    # TODO
     - _target_: randfig.Formula
       keys: ["max_segment"]
       formula:
         _target_: randfig.expressions.add_value
         key: "num_rings"
         value: -1
-        _partial_: true 
+        _partial_: true
     - _target_: randfig.Formula
       keys: ["max_segment_rings_corr_factor"]
       formula:
@@ -256,6 +255,43 @@ compose:
         a_key: "max_segment"
         b_key: "max_segment_rings_corr_factor"
         _partial_: true
+    - _target_: randfig.Formula
+      keys: ["max_segment"]
+      formula:
+        _target_: randfig.expressions.call
+        key: "max_segment"
+        fn:
+          _target_: hydra.utils.get_method
+          path: builtins.int
+        _partial_: true
+    # zOutputSize: 2 * num_rings - 1
+    - _target_: randfig.Formula
+      keys: ["zOutputSize"]
+      formula:
+        _target_: randfig.expressions.product_by_num
+        n_key: "num_rings"
+        num: 2
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["zOutputSize"]
+      formula:
+        _target_: randfig.expressions.add_value
+        key: "zOutputSize"
+        value: -1
+        _partial_: true
+    # xyOutputSize: choice from 128, 192, 256, 320, 384, 448, 512
+    - _target_: randfig.Formula
+      keys: ["xyOutputSize"]
+      formula:
+        _target_: randfig.decorators.accept_cfg
+        _args_:
+          - _target_: hydra.utils.get_method
+            path: random.choice
+          - [128, 192, 256, 320, 384, 448, 512]
+    # zoomFactor: PROVISIONALLY set to 1.5
+    - _target_: randfig.Insert
+      keys: ["zoomFactor"]
+      value: 1.5
     # STIR corrections and reconstruction parameters
     - _target_: randfig.Insert
       keys: ["recons_type"]
@@ -359,13 +395,6 @@ compose:
         _target_: randfig.expressions.rounding
         key: "max_energy_window"
         decimals: 1
-        _partial_: true
-    - _target_: randfig.Formula
-      keys: ["max_segment"]
-      formula:
-        _target_: randfig.expressions.rounding
-        key: "max_segment"
-        decimals: 0
         _partial_: true
     # Removings
     - _target_: randfig.Remove
