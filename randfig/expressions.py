@@ -4,7 +4,6 @@ from typing import Mapping, Any, List, Optional
 from randfig.utils import (
     add_uniform_jitter,
     search_divisor,
-    add_uniform_jitter
 )
 
 
@@ -375,3 +374,34 @@ def pick_from_mapping(cfg: Mapping, key: str, mapping: Mapping[str, Any]) -> Any
         ``mapping[cfg[key]]``.
     """
     return mapping[cfg[key]]
+
+
+def add(cfg: Mapping, key_a: str, key_b: str) -> Any:
+    """
+    Adds the values associated to ``key_a`` and ``key_b``
+    from ``cfg``.
+
+    Args:
+        cfg: a ``dict``-like config.
+        key_a: key whose value can be an operand to the ``+`` operator.
+        key_b: key whose value can be an operand to the ``+`` operator.
+
+    Returns:
+        ``cfg[key_a] + cfg[key_b]``
+    """
+    return cfg[key_a] + cfg[key_b]
+
+
+def add_value(cfg: Mapping, key: str, value: Any) -> Any:
+    """
+    Adds ``cfg[key]`` and ``value``.
+
+    Args:
+        cfg: a ``dict``-like config.
+        key: key whose value can be an operand to the ``+`` operator.
+        value: value that will be added to ``key``.
+
+    Returns:
+        ``cfg[key_a] + value``
+    """
+    return cfg[key] + value

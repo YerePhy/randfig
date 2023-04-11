@@ -376,3 +376,20 @@ def test_pick_from_mapping(cfg, mapping, expected):
     out = expressions.pick_from_mapping(
         cfg=cfg, key="key", mapping=mapping)
     assert out == expected
+
+
+@pytest.mark.parametrize('cfg,expected', [
+    [{"a": 1, "b": 2.5}, 3.5],
+    [{"a": "hello ", "b": "world"}, "hello world"]
+])
+def test_add(cfg, expected):
+    assert expressions.add(cfg, "a", "b") == expected
+
+
+@pytest.mark.parametrize('cfg,value,expected', [
+    [{"a": 1}, 2.5, 3.5],
+    [{"a": 2.5}, -1, 1.5],
+    [{"a": "hello "}, "world", "hello world"]
+])
+def test_add_value(cfg, value, expected):
+    assert expressions.add_value(cfg, "a", value) == expected
