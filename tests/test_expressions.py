@@ -393,3 +393,11 @@ def test_add(cfg, expected):
 ])
 def test_add_value(cfg, value, expected):
     assert expressions.add_value(cfg, "a", value) == expected
+
+
+@pytest.mark.parametrize('cfg,fn,expected', [
+    [{"key": 1.5}, int, 1],
+    [{"key": 1.5}, str, "1.5"],
+])
+def test_call(cfg, fn, expected):
+    assert expressions.call(cfg, "key", fn) == expected
