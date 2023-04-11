@@ -8,7 +8,7 @@ from pyprojroot import here
 from randfig import Save
 
 
-config_path = here().joinpath("configs/config.yaml")
+config_path = here().joinpath("configs/config_0.yaml")
 params_stats_path = here().joinpath("scanner_params/params_stats.csv")
 
 log = logging.getLogger(__name__)

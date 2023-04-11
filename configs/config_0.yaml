@@ -175,7 +175,7 @@ compose:
         num: 2
         _partial_: true
     - _target_: randfig.Formula
-      keys: ["effective_diamater_corr_factor"]
+      keys: ["effective_diameter_corr_factor"]
       formula:
         _target_: randfig.decorators.accept_cfg
         _args_:
@@ -187,7 +187,7 @@ compose:
       formula:
         _target_: randfig.expressions.product
         a_key: "effective_diameter"
-        b_key: "effective_diamater_corr_factor"
+        b_key: "effective_diameter_corr_factor"
         _partial_: true
     - _target_: randfig.Formula
       keys: ["efective_transaxial_crystal_size"]
@@ -323,7 +323,7 @@ compose:
     - _target_: randfig.Remove
       keys: ["effective_diameter"]
     - _target_: randfig.Remove
-      keys: ["effective_diamater_corr_factor"]
+      keys: ["effective_diameter_corr_factor"]
     - _target_: randfig.Remove
       keys: ["efective_transaxial_crystal_size"]
     - _target_: randfig.Remove
