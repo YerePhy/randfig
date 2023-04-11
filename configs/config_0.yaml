@@ -214,7 +214,7 @@ compose:
           threshold: 27
           not_found_strategy: min
         _partial_: true
-    # numberOfIterations: between 0-10 times numberOfSubsets
+    # numberOfIterations: between 5-10 times numberOfSubsets
     - _target_: randfig.Formula
       keys: ["mult_numberOfSubsets"]
       formula:
@@ -231,7 +231,36 @@ compose:
         a_key: "mult_numberOfSubsets"
         b_key: "numberOfSubsets"
         _partial_: true
-    # STIR corrections
+    # max_segment: 70-100% * (num_rings - 1)
+    # TODO
+    - _target_: randfig.Formula
+      keys: ["rings_corr_factor"]
+      formula:
+        _target_: randfig.decorators.accept_cfg
+        _args_:
+          - _target_: hydra.utils.get_method
+            path: random.uniform
+          - 0.75
+          - 1
+    # STIR corrections and reconstruction parameters
+    - _target_: randfig.Insert
+      keys: ["recons_type"]
+      value: OSEM3D
+    - _target_: randfig.Insert
+      keys: ["psf_value"]
+      value: 0
+    - _target_: randfig.Insert
+      keys: ["subiteration_interval"]
+      value: 0
+    - _target_: randfig.Insert
+      keys: ["x_dir_filter_FWHM"]
+      value: 0
+    - _target_: randfig.Insert
+      keys: ["y_dir_filter_FWHM"]
+      value: 0
+    - _target_: randfig.Insert
+      keys: ["z_dir_filter_FWHM"]
+      value: 0
     - _target_: randfig.Insert
       keys: ["analytical_att_correction"]
       value: 1
