@@ -1,6 +1,6 @@
 import math
 from numbers import Number
-from typing import Mapping, Any, List, Optional
+from typing import Mapping, Any, List, Optional, Callable
 from randfig.utils import (
     add_uniform_jitter,
     search_divisor,
@@ -405,3 +405,18 @@ def add_value(cfg: Mapping, key: str, value: Any) -> Any:
         ``cfg[key_a] + value``
     """
     return cfg[key] + value
+
+
+def call(cfg: Mapping, key: str, fn: Callable) -> Any:
+    """
+    Does the folowing call ``fn(cfg[key])``.
+
+    Args:
+        cfg: a ``dict``-like config.
+        key: key whose value will be argument to ``fn``.
+        fn: a callable.
+
+    Returns:
+        ``fn(cfg[key])``
+    """
+    return fn(cfg[key])
