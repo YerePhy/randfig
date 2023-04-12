@@ -5,6 +5,7 @@ from .nest import *
 from .save import *
 from .insert import *
 from .remove import *
+from .unpack import *
 
 
 __all__ = (
@@ -15,4 +16,5 @@ __all__ = (
     + save.__all__
     + insert.__all__
     + remove.__all__
+    + unpack.__all__
 )

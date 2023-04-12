@@ -6,7 +6,17 @@ from bisect import bisect_left, bisect_right
 from collections import defaultdict
 from functools import reduce
 from numbers import Number
-from typing import Mapping, Sequence, Any, DefaultDict, Dict, List, Union, Optional
+from typing import (
+    Mapping,
+    Sequence,
+    Any,
+    DefaultDict,
+    Dict,
+    List,
+    Union,
+    Optional,
+    Iterable
+)
 
 
 def get_nested_value(mapping: Mapping, map_list: Sequence[str]) -> Any:
@@ -340,3 +350,45 @@ def search_divisor(n: Number, not_found_strategy: str, threshold: Number, diviso
         return find_immediately_upper_divisor(n, threshold)
     else:
         raise ValueError(f"not_found_strategy={not_found_strategy} is not a valid strategy, available strategies are 'min' and 'max'")
+
+
+def unpack(cfg: Mapping[str, Any], key: str, new_keys: Sequence[str], remove: bool = False) -> Mapping:
+    """
+    Stub.
+
+    Args:
+        cfg: a ``dict``-like config.
+        key: key whose value will be unpacked
+        new_keys: a key for each value associated to ``key``
+
+    Returns:
+        Input config with new key, value pairs. These new
+        keys are ``new_keys`` and the associated values
+        are provided by ``cfg[key]``.
+
+    Raises:
+        TypeError: if ``cfg[key]`` is not an ``Iterable``.
+        TypeError: if ``cfg[key]`` and ``new_keys`` have different lengths.
+        ValueError: if any of the keys in ``new_keys`` already exists in ``cfg``.
+    """
+    unpacking = cfg[key]
+
+    if not isinstance(unpacking, Iterable):
+        raise TypeError(f"Got {type(unpacking)}, expected Iterable")
+
+    unpacking_len = len(unpacking)
+    new_keys_len = len(new_keys)
+
+    if new_keys_len != unpacking_len:
+        raise ValueError(f"new_keys has len: {new_keys_len} and cfg[key] has len: {unpacking_len}.")
+
+    for nk, val in zip(new_keys, unpacking):
+        if nk not in cfg.keys():
+            cfg.update({nk: val})
+        else:
+            raise ValueError(f"key: {nk} already exists in cfg.")
+
+    if remove:
+        cfg.pop(key, None)
+
+    return cfg

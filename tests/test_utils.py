@@ -324,3 +324,67 @@ def test_search_divisor(n, divisors, not_found_strategy, threshold, expected):
         threshold=threshold
     )
     assert out == expected
+
+
+@pytest.mark.parametrize('cfg,new_keys,expected,remove', [
+    [
+        {"key": [0]},
+        ["new_0"],
+        {"key": [0], "new_0": 0},
+        False
+    ],
+    [
+        {"key": [0, 1]},
+        ["new_0", "new_1"],
+        {"key": [0, 1], "new_0": 0, "new_1": 1},
+        False
+    ],
+
+    [
+        {"key": [0, 1]},
+        ["new_0", "new_1"],
+        {"key": [0, 1], "new_0": 0, "new_1": 1},
+        False
+    ],
+    [
+        {"key": (0, 1)},
+        ["new_0", "new_1"],
+        {"key": (0, 1), "new_0": 0, "new_1": 1},
+        False
+    ],
+    [
+        {"key": (0, 1)},
+        ["new_0", "new_1"],
+        {"new_0": 0, "new_1": 1},
+        True
+    ],
+])
+def test_unpack(cfg, new_keys, expected, remove):
+    out = utils.unpack(cfg=cfg, key="key", new_keys=new_keys, remove=remove)
+    assert out == expected
+
+
+@pytest.mark.parametrize('cfg,new_keys', [
+    [
+        {"key": [0, 1]},
+        ["new_0", "new_1", "new_2"]
+    ],
+    [
+        {"key": [0, 1, 2]},
+        ["new_0", "new_1"]
+    ]
+])
+def test_unpack_value_error(cfg, new_keys):
+    with pytest.raises(ValueError):
+        utils.unpack(cfg=cfg, key="key", new_keys=new_keys)
+
+
+@pytest.mark.parametrize('cfg,new_keys', [
+    [
+        {"key": 0},
+        ["new_0", "new_1", "new_2"]
+    ]
+])
+def test_unpack_type_error(cfg, new_keys):
+    with pytest.raises(TypeError):
+        utils.unpack(cfg=cfg, key="key", new_keys=new_keys)
