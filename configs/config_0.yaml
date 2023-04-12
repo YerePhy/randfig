@@ -280,18 +280,36 @@ compose:
         value: -1
         _partial_: true
     # xyOutputSize: choice from 128, 192, 256, 320, 384, 448, 512
+    # zoomFactor: PROVISIONALLY set to 1.5
+    # tuples of (xyOutputSize, zoomFactor) must be choosen at random
     - _target_: randfig.Formula
-      keys: ["xyOutputSize"]
+      keys: ["xyOutputSize_zoomFactor"]
       formula:
         _target_: randfig.decorators.accept_cfg
         _args_:
           - _target_: hydra.utils.get_method
             path: random.choice
-          - [128, 192, 256, 320, 384, 448, 512]
-    # zoomFactor: PROVISIONALLY set to 1.5
-    - _target_: randfig.Insert
-      keys: ["zoomFactor"]
-      value: 1.5
+          -
+            - - 128
+              - 1.5
+            - - 192
+              - 1.5
+            - - 256
+              - 1.5
+            - - 320
+              - 1.5
+            - - 384
+              - 1.5
+            - - 448
+              - 1.5
+            - - 512
+              - 1.5
+    - _target_: randfig.Unpack
+      keys: ["xyOutputSize_zoomFactor"]
+      new_keys:
+        - - "xyOutputSize"
+          - "zoomFactor"
+      remove: true
     # STIR corrections and reconstruction parameters
     - _target_: randfig.Insert
       keys: ["recons_type"]
