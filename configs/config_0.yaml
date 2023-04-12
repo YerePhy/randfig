@@ -32,6 +32,17 @@ compose:
           "18": ${stats:doi_LSO}
           "29": ${stats:doi_LYSO}
         _partial_: true
+    # coincidence_window: depends on the material, never les than 3-4 ns
+    - _target_: randfig.Formula
+      keys: ["coincidence_window"]
+      formula:
+        _target_: randfig.expressions.pick_from_mapping
+        key: "simset_material"
+        mapping:
+          "10": ${stats:coincidence_window_BGO}
+          "18": ${stats:coincidence_window_LSO}
+          "29": ${stats:coincidence_window_LYSO}
+        _partial_: true
     # scanner_radius: sampled from uniform distribution
     - _target_: randfig.Formula
       keys: ["scanner_radius"]
@@ -310,6 +321,16 @@ compose:
         - - "xyOutputSize"
           - "zoomFactor"
       remove: true
+    # savingInterval: max. of iterations so just one image is saved
+    - _target_: randfig.Formula # acts as a pseudo identity function
+      keys: ["savingInterval"]
+      formula:
+        _target_: randfig.expressions.call
+        key: "numberOfIterations"
+        fn:
+          _target_: hydra.utils.get_method
+          path: builtins.int
+        _partial_: true
     # STIR corrections and reconstruction parameters
     - _target_: randfig.Insert
       keys: ["recons_type"]
