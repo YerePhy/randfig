@@ -331,6 +331,36 @@ compose:
           _target_: hydra.utils.get_method
           path: builtins.int
         _partial_: true
+    # axial_fov must include detector gaps: axial_fov =  (num_rings * z_crystal_size)  + (num_rings-1)*gap
+    - _target_: randfig.Formula
+      keys: ["axial_fov_gaps"]
+      formula:
+        _target_: randfig.decorators.accept_cfg
+        _args_:
+          - _target_: hydra.utils.get_method
+            path: random.choice
+          - [0.019608, 0.003175, 0.036471, 0.025217, 0.025217, 0.010256, 0.009302, 0.251852, 0.020513, 0.912000, 0.244348]
+    - _target_: randfig.Formula
+      keys: ["effective_num_rings"]
+      formula:
+        _target_: randfig.expressions.add_value
+        key: "num_rings"
+        value: -1
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["total_axial_fov_gaps"]
+      formula:
+        _target_: randfig.expressions.product
+        a_key: "effective_num_rings"
+        b_key: "axial_fov_gaps"
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["axial_fov"]
+      formula:
+        _target_: randfig.expressions.add
+        key_a: "axial_fov"
+        key_b: "total_axial_fov_gaps"
+        _partial_: true
     # STIR corrections and reconstruction parameters
     - _target_: randfig.Insert
       keys: ["recons_type"]
@@ -448,3 +478,9 @@ compose:
       keys: ["mult_numberOfSubsets"]
     - _target_: randfig.Remove
       keys: ["max_segment_rings_corr_factor"]
+    - _target_: randfig.Remove
+      keys: ["effective_num_rings"]
+    - _target_: randfig.Remove
+      keys: ["axial_fov_gaps"]
+    - _target_: randfig.Remove
+      keys: ["total_axial_fov_gaps"]
