@@ -321,6 +321,10 @@ compose:
         - - "xyOutputSize"
           - "zoomFactor"
       remove: true
+    # zOutputVoxelSize: PROVISIONALLY set to 3.27 mm
+    - _target_: randfig.Insert
+      keys: ["zOutputVoxelSize"]
+      value: 3.27
     # savingInterval: max. of iterations so just one image is saved
     - _target_: randfig.Formula # acts as a pseudo identity function
       keys: ["savingInterval"]
@@ -339,7 +343,7 @@ compose:
         _args_:
           - _target_: hydra.utils.get_method
             path: random.choice
-          - [0.019608, 0.003175, 0.036471, 0.025217, 0.025217, 0.010256, 0.009302, 0.251852, 0.020513, 0.912000, 0.244348]
+          - [0.036, 0.003, 0.019, 0.025, 0.010, 0.009, 0.020, 0.0263, 0.009]
     - _target_: randfig.Formula
       keys: ["effective_num_rings"]
       formula:
