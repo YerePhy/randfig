@@ -335,7 +335,7 @@ compose:
           _target_: hydra.utils.get_method
           path: builtins.int
         _partial_: true
-    # axial_fov must include detector gaps: axial_fov =  (num_rings * z_crystal_size)  + (num_rings-1)*gap
+    # axial_fov must include detector gaps: axial_fov =  (num_rings * z_crystal_size) + (num_rings-1) * gap
     - _target_: randfig.Formula
       keys: ["axial_fov_gaps"]
       formula:
