@@ -411,3 +411,5 @@ compose:
       keys: ["mult_numberOfSubsets"]
     - _target_: randfig.Remove
       keys: ["max_segment_rings_corr_factor"]
+    - _target_: randfig.Remove
+      keys: ["axial_fov_total_gap"]
