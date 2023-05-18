@@ -401,3 +401,34 @@ def test_add_value(cfg, value, expected):
 ])
 def test_call(cfg, fn, expected):
     assert expressions.call(cfg, "key", fn) == expected
+
+
+@pytest.mark.parametrize('cfg,key,expected,expected_decimals', [
+    [
+        {"not_number": "1", "number": 10.1123},
+        "number",
+        10.112,
+        3
+    ],
+    [
+        {"not_number": "1", "number": 10.1123e1},
+        "number",
+        101.12,
+        2
+    ]
+])
+def test_trunc(cfg, key, expected, expected_decimals):
+    out = expressions.trunc(cfg, key, expected_decimals)
+    Decimal(str(out)).as_tuple().exponent == expected_decimals
+    assert out == expected
+
+
+@pytest.mark.parametrize('cfg,key', [
+    [
+        {"not_number": "1", "number": 1.1111},
+        "not_number"
+    ]
+])
+def test_trunc_not_number(cfg, key):
+    with pytest.raises(TypeError):
+        expressions.rounding(cfg, key, 0)

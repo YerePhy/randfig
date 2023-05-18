@@ -420,3 +420,27 @@ def call(cfg: Mapping, key: str, fn: Callable) -> Any:
         ``fn(cfg[key])``
     """
     return fn(cfg[key])
+
+
+def trunc(cfg: Mapping, key: str, decimals: int) -> Any:
+    """
+    Truncate the value of ``cfg[key]`` if
+    its value is a ``Number``.
+
+    Args:
+        cfg: ``dict``-like congifuration.
+        key: a key of ``cfg`` which value is a ``Number``
+
+    Returns:
+        The truncated value.
+
+    Raises:
+        TypeError: if the value associeted to
+            ``cfg[key]`` is not a ``Number``.
+    """
+    value_number = cfg[key]
+
+    if not isinstance(value_number, Number):
+        raise TypeError(f"Expected a numeric but got {value_number} which is a {type(value_number)}.")
+
+    return float(f"{value_number:.{decimals}f}")
