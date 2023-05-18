@@ -413,3 +413,60 @@ compose:
       keys: ["max_segment_rings_corr_factor"]
     - _target_: randfig.Remove
       keys: ["axial_fov_total_gap"]
+    # Truncation
+    - _target_: randfig.Formula
+      keys: ["axial_fov"]
+      formula:
+        _target_: randfig.expressions.trunc
+        key: "axial_fov"
+        decimals: 3
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["scanner_radius"]
+      formula:
+        _target_: randfig.expressions.trunc
+        key: "scanner_radius"
+        decimals: 3
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["energy_resolution"]
+      formula:
+        _target_: randfig.expressions.trunc
+        key: "energy_resolution"
+        decimals: 3
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["min_energy_window"]
+      formula:
+        _target_: randfig.expressions.trunc
+        key: "min_energy_window"
+        decimals: 3
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["max_energy_window"]
+      formula:
+        _target_: randfig.expressions.trunc
+        key: "max_energy_window"
+        decimals: 3
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["z_crystal_size"]
+      formula:
+        _target_: randfig.expressions.trunc
+        key: "z_crystal_size"
+        decimals: 3
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["transaxial_crystal_size"]
+      formula:
+        _target_: randfig.expressions.trunc
+        key: "transaxial_crystal_size"
+        decimals: 3
+        _partial_: true
+    - _target_: randfig.Formula
+      keys: ["crystal_thickness"]
+      formula:
+        _target_: randfig.expressions.trunc
+        key: "crystal_thickness"
+        decimals: 3
+        _partial_: true
