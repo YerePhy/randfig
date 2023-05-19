@@ -241,7 +241,7 @@ compose:
           threshold: 27
           not_found_strategy: min
         _partial_: true
-    # numberOfIterations: between 5-10 times numberOfSubsets
+    # numberOfIterations: between 5-10 times numberOfSubsets (droped to 7, 10 might cause too noisy images)
     - _target_: randfig.Formula
       keys: ["mult_numberOfSubsets"]
       formula:
@@ -250,7 +250,7 @@ compose:
           - _target_: hydra.utils.get_method
             path: random.randint
           - 5
-          - 10
+          - 7
     - _target_: randfig.Formula
       keys: ["numberOfIterations"]
       formula:
@@ -341,6 +341,14 @@ compose:
     - _target_: randfig.Insert
       keys: ["zOutputVoxelSize"]
       value: 3.27
+    # not adding noise provisionally
+    - _target_: randfig.Insert
+      keys: ["add_noise"]
+      value: 0
+    # not simulationg scatter with STIR
+    - _target_: randfig.Insert
+      keys: ["stir_scatt_simulation"]
+      value: 0
     # savingInterval: max. of iterations so just one image is saved
     - _target_: randfig.Formula # acts as a pseudo identity function
       keys: ["savingInterval"]
