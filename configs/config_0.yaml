@@ -238,7 +238,7 @@ compose:
         _target_: randfig.expressions.get_divisor
         key: "num_aa_bins"
         search_divisor_kwargs:
-          threshold: 27
+          threshold: 21
           not_found_strategy: min
         _partial_: true
     # numberOfIterations: between 5-10 times numberOfSubsets (droped to 7, 10 might cause too noisy images)
@@ -389,6 +389,9 @@ compose:
       value: 0
     - _target_: randfig.Insert
       keys: ["stir_scatt_corr_smoothing"]
+      value: 0
+    - _target_: randfig.Insert
+      keys: ["inter_iteration_filter"]
       value: 0
     - _target_: randfig.Formula
       keys: ["analytic_scatt_corr_factor"]
