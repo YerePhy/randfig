@@ -320,27 +320,23 @@ compose:
             - - 128
               - 1.5
             - - 192
-              - 1.5
+              - 2
             - - 256
-              - 1.5
+              - 3
             - - 320
-              - 1.5
+              - 3.5
             - - 384
-              - 1.5
+              - 4
             - - 448
-              - 1.5
+              - 5
             - - 512
-              - 1.5
+              - 6
     - _target_: randfig.Unpack
       keys: ["xyOutputSize_zoomFactor"]
       new_keys:
         - - "xyOutputSize"
           - "zoomFactor"
       remove: true
-    # zOutputVoxelSize: PROVISIONALLY set to 3.27 mm
-    - _target_: randfig.Insert
-      keys: ["zOutputVoxelSize"]
-      value: 3.27
     # not adding noise provisionally
     - _target_: randfig.Insert
       keys: ["add_noise"]
