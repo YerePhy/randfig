@@ -60,6 +60,14 @@ randfig.transforms.save module
    :undoc-members:
    :show-inheritance:
 
+randfig.transforms.unpack module
+--------------------------------
+
+.. automodule:: randfig.transforms.unpack
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 
