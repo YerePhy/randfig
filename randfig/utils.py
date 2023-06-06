@@ -325,6 +325,43 @@ def search_divisor(n: Number, not_found_strategy: str, threshold: Number, diviso
         divisor smaller than ``threshold`` is returned.
         See :py:func:`find_immediately_upper_divisor`.
 
+    .. exec_code::
+        
+        # --- hide: start ---
+        from randfig.utils import search_divisor
+        # --- hide: stop ---
+
+        # divisors of 45: 1, 3, 5, 9, 15.
+
+        # no ``divisors`` provided and "min" strategy
+        n=45
+        not_found_strategy = "min"
+        threshold = 7
+        min_strategy_divisor = search_divisor(n, not_found_strategy, threshold)
+        
+        # --- hide: start ---
+        print(f"Divisor found with min strategy: {min_strategy_divisor}")
+        # --- hide: stop ---
+
+        # no ``divisors`` provided and "max" strategy
+        n=45
+        not_found_strategy = "max"
+        threshold = 7
+        max_strategy_divisor = search_divisor(n, not_found_strategy, threshold)
+        
+        # --- hide: start ---
+        print(f"Divisor found with max strategy: {max_strategy_divisor}")
+        # --- hide: stop ---
+
+        # ``divisors`` provided and "max" strategy (strategy not used in this case).
+        n=45
+        divisors = [8, 15]
+        no_strategy_divisor = search_divisor(n, not_found_strategy, threshold, divisors)
+        
+        # --- hide: start ---
+        print(f"Divisor found with divisors provided: {no_strategy_divisor}")
+        # --- hide: stop ---
+
     Args:
         n: number to find the divisor of.
         not_found_strategy: one of ``"min"``, ``"max"``.
