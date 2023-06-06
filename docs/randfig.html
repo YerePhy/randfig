@@ -1081,6 +1081,31 @@ See <a class="reference internal" href="#randfig.utils.find_immediately_upper_di
 </dl>
 </li>
 </ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># divisors of 45: 1, 3, 5, 9, 15.</span>
+
+<span class="c1"># no ``divisors`` provided and &quot;min&quot; strategy</span>
+<span class="n">n</span><span class="o">=</span><span class="mi">45</span>
+<span class="n">not_found_strategy</span> <span class="o">=</span> <span class="s2">&quot;min&quot;</span>
+<span class="n">threshold</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">min_strategy_divisor</span> <span class="o">=</span> <span class="n">search_divisor</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">not_found_strategy</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>
+
+<span class="c1"># no ``divisors`` provided and &quot;max&quot; strategy</span>
+<span class="n">n</span><span class="o">=</span><span class="mi">45</span>
+<span class="n">not_found_strategy</span> <span class="o">=</span> <span class="s2">&quot;max&quot;</span>
+<span class="n">threshold</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">max_strategy_divisor</span> <span class="o">=</span> <span class="n">search_divisor</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">not_found_strategy</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>
+
+<span class="c1"># ``divisors`` provided and &quot;max&quot; strategy (strategy not used in this case).</span>
+<span class="n">n</span><span class="o">=</span><span class="mi">45</span>
+<span class="n">divisors</span> <span class="o">=</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
+<span class="n">no_strategy_divisor</span> <span class="o">=</span> <span class="n">search_divisor</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">not_found_strategy</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">divisors</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Divisor found with min strategy: 5
+Divisor found with max strategy: 9
+Divisor found with divisors provided: 15
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
