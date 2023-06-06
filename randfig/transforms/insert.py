@@ -19,7 +19,8 @@ class Insert(ConfigTransform):
         # --- hide: stop ---
 
         init_config = {"param_0": 0, "param_1": 1}
-        inserted = Insert(keys=["param_2"], value=2)
+        insert = Insert(keys=["param_2"], value=2)
+        inserted = insert(init_config)
 
         # --- hide: start ---
         print(f"inserted: {inserted}")

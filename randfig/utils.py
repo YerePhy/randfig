@@ -1,9 +1,22 @@
+import math
 import operator
 import random
+import warnings
+from bisect import bisect_left, bisect_right
 from collections import defaultdict
 from functools import reduce
 from numbers import Number
-from typing import Mapping, Sequence, Any, DefaultDict, Dict
+from typing import (
+    Mapping,
+    Sequence,
+    Any,
+    DefaultDict,
+    Dict,
+    List,
+    Union,
+    Optional,
+    Iterable
+)
 
 
 def get_nested_value(mapping: Mapping, map_list: Sequence[str]) -> Any:
@@ -141,7 +154,7 @@ def remove_nested_key(cfg: Dict[str, Dict], keys: Sequence[str]) -> None:
 
 def add_uniform_jitter(value: Number, p: Number, reference: Number) -> Number:
     """
-    Ass jitter to ``value`` based on a fraction, ``p`` of ``reference``:
+    Add jitter to ``value`` based on a fraction, ``p`` of ``reference``:
 
     .. code-block::
 
@@ -166,3 +179,216 @@ def add_uniform_jitter(value: Number, p: Number, reference: Number) -> Number:
     effective_reference = p * reference
 
     return value + random.uniform(-effective_reference, effective_reference)
+
+
+def get_divisors(n: Number) -> List[int]:
+    """
+    Get the divisors of a number.
+
+    Args:
+        n: taget number (internally casted to ``int``).
+
+    Returns:
+        The divisors of the input number.
+
+    Raises:
+        ValueError: When ``n==0``.
+    """
+    num = int(n)
+
+    if num == 0:
+        raise ValueError("For convinience 0 is not a valid number.")
+    if num == 1:
+        return [num]
+
+    factors = [1]
+
+    for t in range(2, math.ceil((num // 2) + 1)):
+        if num % t == 0:
+            factors.append(int(t))
+
+    factors.append(num)
+
+    return factors
+
+
+def find_divisor(n: Number, divisors: Sequence[Number]) -> Union[int, None]:
+    """
+    Sequentially, tries to find each item of ``divisors`` in the
+    divisors of ``n``. The first item of ``divisors`` that matches
+    a divisor of ``n`` is returned. If none of ``divisors`` is found
+    in the divisors of ``n``, ``None`` is returned.
+
+    Args:
+        n: number to find the divisor of (internally casted to ``int``)
+        divisors: seuquence of divisors to find (internally casted to ``int``).
+
+    Returns:
+        The first item of divisors that matches a divisor of ``n``.
+
+    Raises:
+        ValueError: If ``n==0``.
+        ValueError: If ``divisors`` is empty after removing the zeros.
+    """
+    n_ = int(n)
+    divisors_ = list(dict.fromkeys([int(m) for m in divisors]))
+
+    if n_ == 0:
+        raise ValueError("For convinience 0 is not a valid number.")
+    if 0 in divisors_:
+        warnings.warn("Excluding 0 from divisors")
+        divisors_ = [i for i in divisors_ if i != 0]
+    if not divisors_:
+        raise ValueError("Empty list of divisors to find after excluding 0.")
+
+    real_divisors = get_divisors(n_)
+
+    for div in divisors_:
+        if div in real_divisors:
+            return div
+
+
+def find_immediately_lower_divisor(n: Number, threshold: Number) -> int:
+    """
+    Find the divisor of ``n``  immediately smaller than
+    a given threshold.
+
+    Args:
+        n: the number to find the divisor of (internally casted to ``int``).
+        threshold: the divisor returned is the biggest
+            divisor of ``n`` smaller than this threshold
+            (internally casted to ``int``).
+
+    Returns:
+        The biggest divisor of ``n`` smaller than ``threshold``.
+
+    Raises:
+        ValueError: if ``threshold_==0``.
+    """
+    n_ = int(n)
+    threshold_ = int(threshold)
+
+    if threshold_ == 0:
+        raise ValueError("There is no divisors equal or smaller than 0.")
+
+    divisors_ = get_divisors(n_)
+
+    return divisors_[bisect_left(divisors_, threshold_)-1]
+
+
+def find_immediately_upper_divisor(n: Number, threshold: Number) -> int:
+    """
+    Find the divisor of ``n``  immediately bigger than
+    a given threshold.
+
+    Args:
+        n: the number to find the divisor of (internally casted to ``int``).
+        threshold: the divisor returned is the smallest
+            divisor of ``n`` bigger than this threshold
+            (internally casted to ``int``).
+
+    Returns:
+        The smallest divisor of ``n`` bigger than ``threshold``.
+
+    Raises:
+        ValueError: if ``threshold_==0``.
+    """
+    n_ = int(n)
+    threshold_ = int(threshold)
+
+    if threshold_ == 0:
+        raise ValueError("There is no divisors equal or smaller than 0.")
+
+    # this will raise ValueError if n_ is 0
+    divisors_ = get_divisors(n_)
+
+    if threshold_ >= n_:
+        warnings.warn(f"Threshold {threshold_} is bigger than n {n_}, returning n.")
+        return n_
+
+
+    return divisors_[bisect_right(divisors_, threshold_)]
+
+
+def search_divisor(n: Number, not_found_strategy: str, threshold: Number, divisors: Optional[Sequence[Number]] = None) -> int:
+    """
+    Checks sequentially if the items of ``divisors``
+    are actually divisors of ``n`` the first match
+    is returned (see :py:func:`randfig.utils.find_divisor`).
+    If there is no match, a divisor can be found using
+    one of the following strategies:
+
+    * ``not_found_strategy=="min"``: the smallest
+        divisor bigger than ``threshold`` is returned.
+        See :py:func:`find_immediately_lower_divisor`.
+    * ``not_found_strategy=="max"``: the biggest
+        divisor smaller than ``threshold`` is returned.
+        See :py:func:`find_immediately_upper_divisor`.
+
+    Args:
+        n: number to find the divisor of.
+        not_found_strategy: one of ``"min"``, ``"max"``.
+            Strategy to follow if there is no match.
+        divisors: the items of this sequence
+            are matched sequentially against the divisors of
+            ``n`` the first match is returned. If ``None``
+            the selected strategy is directly applied.
+
+    Returns:
+        A divisor of ``n``.
+
+    Raises:
+        ValueError: if ``not_found_strategy`` is not ``"min"`` or ``"max"``.
+    """
+    if divisors is not None:
+        if div_ := find_divisor(n, divisors):
+            return div_
+
+    if not_found_strategy == "min":
+        return find_immediately_lower_divisor(n, threshold)
+    elif not_found_strategy == "max":
+        return find_immediately_upper_divisor(n, threshold)
+    else:
+        raise ValueError(f"not_found_strategy={not_found_strategy} is not a valid strategy, available strategies are 'min' and 'max'")
+
+
+def unpack(cfg: Mapping[str, Any], key: str, new_keys: Sequence[str], remove: bool = False) -> Mapping:
+    """
+    Stub.
+
+    Args:
+        cfg: a ``dict``-like config.
+        key: key whose value will be unpacked
+        new_keys: a key for each value associated to ``key``
+
+    Returns:
+        Input config with new key, value pairs. These new
+        keys are ``new_keys`` and the associated values
+        are provided by ``cfg[key]``.
+
+    Raises:
+        TypeError: if ``cfg[key]`` is not an ``Iterable``.
+        TypeError: if ``cfg[key]`` and ``new_keys`` have different lengths.
+        ValueError: if any of the keys in ``new_keys`` already exists in ``cfg``.
+    """
+    unpacking = cfg[key]
+
+    if not isinstance(unpacking, Iterable):
+        raise TypeError(f"Got {type(unpacking)}, expected Iterable")
+
+    unpacking_len = len(unpacking)
+    new_keys_len = len(new_keys)
+
+    if new_keys_len != unpacking_len:
+        raise ValueError(f"new_keys has len: {new_keys_len} and cfg[key] has len: {unpacking_len}.")
+
+    for nk, val in zip(new_keys, unpacking):
+        if nk not in cfg.keys():
+            cfg.update({nk: val})
+        else:
+            raise ValueError(f"key: {nk} already exists in cfg.")
+
+    if remove:
+        cfg.pop(key, None)
+
+    return cfg

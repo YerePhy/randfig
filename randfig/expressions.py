@@ -1,7 +1,10 @@
 import math
 from numbers import Number
-from typing import Mapping, Any, List, Optional
-from randfig.utils import add_uniform_jitter
+from typing import Mapping, Any, List, Optional, Callable
+from randfig.utils import (
+    add_uniform_jitter,
+    search_divisor,
+)
 
 
 def pop(cfg: Mapping, key: str, element: int = 0) -> Any:
@@ -317,3 +320,127 @@ def get_regular_polygon_apothem(cfg: Mapping, side_len_key: str,
 
     return side_len / (2 * math.tan(math.pi / n_sides))
 
+
+def get_divisor(cfg: Mapping, key: str, search_divisor_kwargs: Mapping[str, Any]) -> int:
+    """
+    Search a divisor of ``cfg[key]`` based on :py:func:`randifg.utils.search_divisor`.
+
+    Args:
+        cfg: a ``dict``-like config.
+        key: key whose value is an ``int`` or can be casted to ``int``.
+        search_divisor_kwargs: kwargs for :py:func:`randifg.utils.search_divisor`,
+            unless ``n`` which is ``cfg[key]``.
+
+    Returns:
+        A divisor of ``cfg[key]``.
+    """
+    n = int(cfg[key])
+    return search_divisor(n, **search_divisor_kwargs)
+
+
+def get_jittered_value(cfg: Mapping, key: str, p: Number) -> Number:
+    """
+    Stub.
+
+    Args:
+        cfg: a ``dict``-like config.
+        key: key whose value is a ``Number`` to add jitter to.
+        p: the amount of jitter to add, see :py:func:`randfig.utils.add_uniform_jitter`.
+
+    Returns:
+        Jittered value (``cfg[key] + uniform jitter``).
+
+    Raises:
+        TypeError: if ``cfg[key]`` is not a ``Number``.
+    """
+    value = cfg[key]
+
+    if not isinstance(value, Number):
+        raise TypeError(f"Expected a Number but got {value} which is {type(value)}")
+
+    return add_uniform_jitter(value, value, p)
+
+
+def pick_from_mapping(cfg: Mapping, key: str, mapping: Mapping[str, Any]) -> Any:
+    """
+    Returns ``mapping[cfg[key]]``.
+
+    Args:
+        cfg: a ``dict``-like config.
+        key: key whose value will hash ``mapping``.
+        mapping: the function returns ``mapping[cfg[key]]``.
+
+    Returns:
+        ``mapping[cfg[key]]``.
+    """
+    return mapping[cfg[key]]
+
+
+def add(cfg: Mapping, key_a: str, key_b: str) -> Any:
+    """
+    Adds the values associated to ``key_a`` and ``key_b``
+    from ``cfg``.
+
+    Args:
+        cfg: a ``dict``-like config.
+        key_a: key whose value can be an operand to the ``+`` operator.
+        key_b: key whose value can be an operand to the ``+`` operator.
+
+    Returns:
+        ``cfg[key_a] + cfg[key_b]``
+    """
+    return cfg[key_a] + cfg[key_b]
+
+
+def add_value(cfg: Mapping, key: str, value: Any) -> Any:
+    """
+    Adds ``cfg[key]`` and ``value``.
+
+    Args:
+        cfg: a ``dict``-like config.
+        key: key whose value can be an operand to the ``+`` operator.
+        value: value that will be added to ``key``.
+
+    Returns:
+        ``cfg[key_a] + value``
+    """
+    return cfg[key] + value
+
+
+def call(cfg: Mapping, key: str, fn: Callable) -> Any:
+    """
+    Does the folowing call ``fn(cfg[key])``.
+
+    Args:
+        cfg: a ``dict``-like config.
+        key: key whose value will be argument to ``fn``.
+        fn: a callable.
+
+    Returns:
+        ``fn(cfg[key])``
+    """
+    return fn(cfg[key])
+
+
+def trunc(cfg: Mapping, key: str, decimals: int) -> Any:
+    """
+    Truncate the value of ``cfg[key]`` if
+    its value is a ``Number``.
+
+    Args:
+        cfg: ``dict``-like congifuration.
+        key: a key of ``cfg`` which value is a ``Number``
+
+    Returns:
+        The truncated value.
+
+    Raises:
+        TypeError: if the value associeted to
+            ``cfg[key]`` is not a ``Number``.
+    """
+    value_number = cfg[key]
+
+    if not isinstance(value_number, Number):
+        raise TypeError(f"Expected a numeric but got {value_number} which is a {type(value_number)}.")
+
+    return float(f"{value_number:.{decimals}f}")

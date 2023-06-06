@@ -319,3 +319,116 @@ def test_get_regular_polygon_apothem(cfg, expected):
 def test_get_regular_polygon_sides_value_error(cfg):
     with pytest.raises(TypeError):
         expressions.get_regular_polygon_sides(cfg, "side_len", "apothem")
+
+
+@pytest.mark.parametrize('search_divisor_kwargs,expected', [
+    [
+        {
+            "divisors": [8, 31, 105],
+            "not_found_strategy": "min",
+            "threshold": 1
+        },
+        105
+    ],
+    [
+        {
+            "divisors": [8, 31, 106],
+            "not_found_strategy": "min",
+            "threshold": 10
+        },
+        7
+    ],
+    [
+        {
+            "divisors": [8, 31, 106],
+            "not_found_strategy": "max",
+            "threshold": 6
+        },
+        7
+    ]
+])
+def test_get_divisor(search_divisor_kwargs, expected):
+    cfg = {"n": 210}
+    out = expressions.get_divisor(cfg, "n", search_divisor_kwargs)
+    assert out == expected
+
+
+@pytest.mark.parametrize('cfg,p', [
+    [{"num": 1}, 0.05]
+])
+def test_add_jitter(cfg, p):
+    out = expressions.get_jittered_value(cfg, "num", p)
+    assert cfg["num"] * (1-p) <= out <= cfg["num"] * (1+p)
+
+
+@pytest.mark.parametrize('cfg', [
+    [{"num": []}]
+])
+def test_add_jitter_type_error(cfg):
+    with pytest.raises(TypeError):
+        expressions.get_jittered_value(cfg, "num", 0.1)
+
+
+@pytest.mark.parametrize('cfg,mapping,expected', [
+    [{"key": "10"}, {"10": 0.01}, 0.01]
+])
+def test_pick_from_mapping(cfg, mapping, expected):
+    out = expressions.pick_from_mapping(
+        cfg=cfg, key="key", mapping=mapping)
+    assert out == expected
+
+
+@pytest.mark.parametrize('cfg,expected', [
+    [{"a": 1, "b": 2.5}, 3.5],
+    [{"a": "hello ", "b": "world"}, "hello world"]
+])
+def test_add(cfg, expected):
+    assert expressions.add(cfg, "a", "b") == expected
+
+
+@pytest.mark.parametrize('cfg,value,expected', [
+    [{"a": 1}, 2.5, 3.5],
+    [{"a": 2.5}, -1, 1.5],
+    [{"a": "hello "}, "world", "hello world"]
+])
+def test_add_value(cfg, value, expected):
+    assert expressions.add_value(cfg, "a", value) == expected
+
+
+@pytest.mark.parametrize('cfg,fn,expected', [
+    [{"key": 1.5}, int, 1],
+    [{"key": 1.5}, str, "1.5"],
+])
+def test_call(cfg, fn, expected):
+    assert expressions.call(cfg, "key", fn) == expected
+
+
+@pytest.mark.parametrize('cfg,key,expected,expected_decimals', [
+    [
+        {"not_number": "1", "number": 10.1123},
+        "number",
+        10.112,
+        3
+    ],
+    [
+        {"not_number": "1", "number": 10.1123e1},
+        "number",
+        101.12,
+        2
+    ]
+])
+def test_trunc(cfg, key, expected, expected_decimals):
+    out = expressions.trunc(cfg, key, expected_decimals)
+    Decimal(str(out)).as_tuple().exponent == expected_decimals
+    assert out == expected
+
+
+@pytest.mark.parametrize('cfg,key', [
+    [
+        {"not_number": "1", "number": 1.1111},
+        "not_number"
+    ]
+])
+def test_trunc_not_number(cfg, key):
+    with pytest.raises(TypeError):
+        expressions.rounding(cfg, key, 0)
