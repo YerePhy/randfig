@@ -170,7 +170,6 @@ compose:
         peak: 511
         is_percentage: true
         sigmas: 2
-        jitter: 0.015
         _partial_: true
     # min_energy_window: computed from 511 + 2 * sigmas + uniform jitter
     - _target_: randfig.Formula
@@ -181,7 +180,6 @@ compose:
         peak: 511
         is_percentage: true
         sigmas: 2
-        jitter: 0.015
         _partial_: true
     # num_aa_bins: half of n_transaxial_detectors
     - _target_: randfig.Formula
@@ -215,13 +213,6 @@ compose:
         _target_: randfig.expressions.product
         a_key: "effective_diameter"
         b_key: "effective_diameter_corr_factor"
-        _partial_: true
-    - _target_: randfig.Formula
-      keys: ["efective_transaxial_crystal_size"]
-      formula:
-        _target_: randfig.expressions.get_jittered_value
-        key: "transaxial_crystal_size"
-        p: 0.25
         _partial_: true
     - _target_: randfig.Formula
       keys: ["num_td_bins"]
@@ -412,8 +403,6 @@ compose:
       keys: ["effective_diameter"]
     - _target_: randfig.Remove
       keys: ["effective_diameter_corr_factor"]
-    - _target_: randfig.Remove
-      keys: ["efective_transaxial_crystal_size"]
     - _target_: randfig.Remove
       keys: ["mult_numberOfSubsets"]
     - _target_: randfig.Remove
